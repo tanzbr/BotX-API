@@ -58,8 +58,15 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
         var dadosCliente = JSON.parse(this.responseText);
+
+        if (dadosCliente.data[0] == null) {
+            res.json({
+                "message":"error",
+                "info":"User not found."
+            })
+            return
+        }
         idCliente = dadosCliente.data[0].id;
-        
         
         xhttp2.onreadystatechange = function logger() {
             if (this.readyState === 4 && this.status === 200) {
