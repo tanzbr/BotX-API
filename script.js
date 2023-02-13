@@ -59,25 +59,28 @@ $("#telefone").on("keydown", (function(){
 }));
 
 function btnSubmit() {
-    var id = inputId.value.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
-    var tel = inputTel.value.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "")
+    var id = inputId.value
+    id = id.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
+    var tel = inputTel.value
+    tel = tel.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "")
+    console.log(tel + " - " + id)
 
-    if (inputId.value == "") {
+    if (id == "") {
         alert("Por favor, digite seu CPF ou CNPJ.")
         return null;
     }
-    if (!regexCpf.test(inputId.value)) {
+    if (!regexCpf.test(id)) {
         alert("Por favor, digite um CPF ou CNPJ válido.")
         return null;
     }
-    if (inputTel.value == "") {
+    if (tel == "") {
         alert("Por favor, digite seu número de telefone.")
         return null;
     }
-    if (!regexTelefone.test(inputTel.value)) {
+    if (!regexTelefone.test(tel)) {
         alert("Por favor, digite um número de telefone válido.")
         return null;
     }
-    window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+inputId.value+"&tel="+inputTel.value)
+    window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+id+"&tel="+tel)
 }
 
