@@ -37,7 +37,7 @@ function carregarLista() {
         console.log(criarElemento(listaTransacoes, i))
         $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
 
-        lista.innerHTML += 
+        /*lista.innerHTML += 
         "ID: " + listaTransacoes[i].id + "<br>" 
         + "Data Criada: " + listaTransacoes[i].dataCriada + "<br>"
         + "Valor: " + listaTransacoes[i].valor + "<br>"
@@ -49,7 +49,7 @@ function carregarLista() {
         " <a href='#' onclick='enviar("+listaTransacoes[i].id+")'>Enviar no Whatsapp</a> "
         +
         "<br>-----------"
-        + "<br>";
+        + "<br>";*/
     };
       }
     };
@@ -61,7 +61,7 @@ function carregarLista() {
 
 function criarElemento(listaTransacoes, i) {
   var li="";
-li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\">";
+li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"select('"+ listaTransacoes[i].id +"')\">";
 li += "            <div class=\"col col-1\" data-label=\"\">";
 li += "              ";
 li += "                      <div class=\"cbx\">";
@@ -97,4 +97,9 @@ li.replaceAll("varValor", listaTransacoes[i].valor)
 li.replaceAll("varID", listaTransacoes[i].id)
 
 return li
+}
+
+function select(id) {
+  var input = document.querySelectorAll('#'+id+' input');
+  input[0].click();
 }
