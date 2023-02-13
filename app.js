@@ -38,6 +38,10 @@ app.get('/detalhes.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/detalhes.js'))
 })
 
+app.get('/detalhes.css', function (req, res) {
+    res.sendFile(path.join(__dirname, '/detalhes.css'))
+})
+
 app.get('/detalhes.html', function (req, res) {
     res.sendFile(path.join(__dirname, '/detalhes.html'))
 })

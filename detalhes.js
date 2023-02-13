@@ -32,7 +32,10 @@ function carregarLista() {
         let listaTransacoes = JSON.parse(xhttp.responseText);
         console.log(listaTransacoes)
 
+
         for (var i = 0; i < listaTransacoes.length; i++) {
+        //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
+        
         lista.innerHTML += 
         "ID: " + listaTransacoes[i].id + "<br>" 
         + "Data Criada: " + listaTransacoes[i].dataCriada + "<br>"
