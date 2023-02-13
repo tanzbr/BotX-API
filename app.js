@@ -26,6 +26,10 @@ app.get('/image.svg', function (req, res) {
     res.sendFile(path.join(__dirname, '/image.svg'))
 })
 
+app.get('/jquery.mask.js', function (req, res) {
+    res.sendFile(path.join(__dirname, '/node_modules/jquery-mask-plugin/src/jquery.mask.js'))
+})
+
 app.get('/script.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/script.js'))
 })
