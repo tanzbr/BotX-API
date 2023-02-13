@@ -8,195 +8,53 @@
     <link rel="stylesheet" href="detalhes.css">
 </head>
 <body>
-    <h1>Seus boletos</h1>
 
-    <div class="container-table100">
-        <div class="wrap-table100">
-        <div class="table" id="table">
-        <div class="row header" id="row-header">
-        <div class="cell">
-        Boleto
-        </div>
-        <div class="cell">
-        Status
-        </div>
-        <div class="cell">
-        Valor
-        </div>
-        <div class="cell">
-        Criada em
-        </div>
-        <div class="cell">
-        Vencimento
-        </div>
-        <div class="cell">
-        Baixar
-        </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Aguardando Pagamento
-        </div>
-        <div class="cell" data-title="Valor">
-        R$200
-        </div>
-        <div class="cell" data-title="Criada em">
-        22/01/2023
-        </div>
-        <div class="cell" data-title="Vencimento">
-        25/02/2023
-        </div>
-        <div class="cell" data-title="Baixar">
-        Baixar | WhatsApp
-        </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Joseph Smith
-        </div>
-        <div class="cell" data-title="Valor">
-        27
-        </div>
-        <div class="cell" data-title="Criada em">
-        Project ManValorr
-        </div>
-        <div class="cell" data-title="Vencimento">
-        Somerville, MA
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
-        </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Justin Black
-        </div>
-        <div class="cell" data-title="Valor">
-        26
-        </div>
-        <div class="cell" data-title="Criada em">
-        Front-End Developer
-        </div>
-        <div class="cell" data-title="Vencimento">
-        Los Angeles
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
+    <div class="container">
+        <h2>Seus boletos</h2>
+        <p>Usuário: Cauã Melo Fernandes</p>
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">Enviar</div>
+            <div class="col col-2">Vencimento</div>
+            <div class="col col-3">Status</div>
+            <div class="col col-4">Valor</div>
+          </li>
+          <!--<li class="table-row">
+            <div class="col col-1" data-label="">
+              
+                      <div class="cbx">
+        <input id="cbx" type="checkbox"/>
+        <label for="cbx"></label>
+        <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+          <path d="M2 8.36364L6.23077 12L13 2"></path>
+        </svg>
+      </div>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="width: 24px !important;
+        height: 24px !important;">
+        <defs>
+          <filter id="goo">
+            <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+            <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo"></fecolormatrix>
+            <feblend in="SourceGraphic" in2="goo"></feblend>
+          </filter>
+        </defs>
+      </svg>
+              
             </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Sean Guzman
-        </div>
-        <div class="cell" data-title="Valor">
-        25
-        </div>
-        <div class="cell" data-title="Criada em">
-        Web Designer
-        </div>
-        <div class="cell" data-title="Vencimento">
-        San Francisco
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
+            <div class="col col-2" data-label="Vencimento">22/03/2023</div>
+            <div class="col col-3" data-label="Status">Vencido</div>
+            <div class="col col-4" data-label="Valor">
+              R$550,90
             </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Keith Carter
-        </div>
-        <div class="cell" data-title="Valor">
-        20
-        </div>
-        <div class="cell" data-title="Criada em">
-        Graphic Designer
-        </div>
-        <div class="cell" data-title="Vencimento">
-        New York, NY
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
-            </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Austin Medina
-        </div>
-         <div class="cell" data-title="Valor">
-        32
-        </div>
-        <div class="cell" data-title="Criada em">
-        Photographer
-        </div>
-        <div class="cell" data-title="Vencimento">
-        New York
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
-            </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Vincent Williamson
-        </div>
-        <div class="cell" data-title="Valor">
-        31
-        </div>
-        <div class="cell" data-title="Criada em">
-        iOS Developer
-        </div>
-        <div class="cell" data-title="Vencimento">
-        Washington
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
-            </div>
-        </div>
-        <div class="row">
-        <div class="cell" data-title="Boleto">
-        #1
-        </div>
-        <div class="cell" data-title="Status">
-        Joseph Smith
-        </div>
-        <div class="cell" data-title="Valor">
-        27
-        </div>
-        <div class="cell" data-title="Criada em">
-        Project ManValorr
-        </div>
-        <div class="cell" data-title="Vencimento">
-        Somerville, MA
-        </div>
-        <div class="cell" data-title="Baixar">
-            Download
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
+          </li>
+            -->
+        </ul>
+      </div> 
+
     <div id="lista"></div> 
 </body>
 <script src="detalhes.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </html>
