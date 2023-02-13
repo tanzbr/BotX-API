@@ -22,6 +22,10 @@ app.get('/style.css', function (req, res) {
     res.sendFile(path.join(__dirname, '/style.css'))
 })
 
+app.get('/image.svg', function (req, res) {
+    res.sendFile(path.join(__dirname, '/image.svg'))
+})
+
 app.get('/script.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/script.js'))
 })

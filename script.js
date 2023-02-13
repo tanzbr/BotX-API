@@ -1,5 +1,5 @@
-const inputId = document.getElementById('inputId')
-const inputTel = document.getElementById('inputTel')
+const inputId = document.getElementById('cpfcnpj')
+const inputTel = document.getElementById('telefone')
 const regexCpf = new RegExp('([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})');
 const regexTelefone = new RegExp('^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$', '')
 console.log("ok2")
@@ -21,6 +21,6 @@ function btnSubmit() {
         alert("Por favor, digite um número de telefone válido.")
         return null;
     }
-    window.location.replace(window.location+"detalhes.html?id="+inputId.value+"&tel="+inputTel.value)
+    window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+inputId.value+"&tel="+inputTel.value)
 }
 
