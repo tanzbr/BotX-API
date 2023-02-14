@@ -110,6 +110,7 @@ body {
   display: flex;
   gap: 30px;
   margin-top: 40px;
+  justify-content: center;
 }
 
 .login-form-footer a {
@@ -226,6 +227,14 @@ body {
 .detalhes p {
   margin-top: 2px;
   text-align: center;
+  -webkit-margin-before: 10px;
+          margin-block-start: 10px;
+  -webkit-margin-after: 5px;
+          margin-block-end: 5px;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
 }
 .detalhes .responsive-table li {
   border-radius: 3px;
@@ -332,6 +341,9 @@ body {
   }
 }
 @media all and (max-width: 767px) {
+  .detalhes .responsive-table .col-1 {
+    flex-basis: 20% !important;
+  }
   .detalhes .responsive-table .table-header {
     display: none;
   }
@@ -347,9 +359,6 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     margin: 5px;
-  }
-  .detalhes .responsive-table .col {
-    flex-basis: 100%;
   }
   .detalhes .responsive-table .col {
     padding-right: 5px !important;
@@ -368,9 +377,9 @@ body {
 .detalhes .responsive-table {
   display: block;
   list-style-type: disc;
-  -webkit-margin-before: 20px;
-  margin-block-start: 20px;
-  -webkit-margin-after: 20px;
+  -webkit-margin-before: 0px;
+  margin-block-start: 0px;
+  -webkit-margin-after: 8px;
   margin-block-end: 8px;
   -webkit-margin-start: 0px;
   margin-inline-start: 0px;

@@ -102,8 +102,13 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                     var valor = dados[i].value
                     var tipo = dados[i].billingType
                     var status = dados[i].status
-                    var dataVencimento = dados[i].dueDate
+                    var dataVencimento = formatDate(dados[i].dueDate)
                     var pdf = dados[i].bankSlipUrl
+
+                    if (status == "PENDING") {status = "À VENCER"}
+                    if (status == "RECEIVED" || status == "CONFIRMED" || status == "RECEIVED_IN_CASH") {status = "PAGO"}
+                    if (status == "OVERDUE") {status = "VENCIDO"}
+                    if (status == "REFUNDED") {status = "ESTORNADO"}
 
                     var datajson = JSON.parse(`{
                         "id": "${id}",
@@ -118,7 +123,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                 }
 
                 res.json(
-                    transacoes
+                    transacoes.reverse()
                 )
             }
         }
@@ -132,3 +137,14 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
     xhttp.setRequestHeader("access-token", "***REMOVED***")
     xhttp.send();
 });
+
+function formatDate(date) {
+    var arrayData = date.split("-");
+    arrayData.reverse();
+    var vencimento = "";
+    for (var i = 0; i < 3; i++) {
+        vencimento += arrayData[i]+"/"
+    }
+    vencimento = vencimento.substring(0, vencimento.length-1);
+    return vencimento;
+}
