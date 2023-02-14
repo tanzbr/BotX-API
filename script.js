@@ -95,29 +95,42 @@ function carregarLista(id) {
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
         let listaTransacoes = JSON.parse(xhttp.responseText);
+        if (listaTransacoes.info == null) {
+            
+            for (var i = 0; i < listaTransacoes.length; i++) {
+                //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
+                $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
         
-        for (var i = 0; i < listaTransacoes.length; i++) {
-        //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
-        $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
-
-        /*lista.innerHTML += 
-        "ID: " + listaTransacoes[i].id + "<br>" 
-        + "Data Criada: " + listaTransacoes[i].dataCriada + "<br>"
-        + "Valor: " + listaTransacoes[i].valor + "<br>"
-        + "Tipo: " + listaTransacoes[i].tipo + "<br>"
-        + "Status: " + listaTransacoes[i].status + "<br>"
-        + "Data de Vencimento: " + listaTransacoes[i].dataVencimento + "<br>"
-        + "Link Download: " + listaTransacoes[i].pdf + "<br>"
-        +
-        " <a href='#' onclick='enviar("+listaTransacoes[i].id+")'>Enviar no Whatsapp</a> "
-        +
-        "<br>-----------"
-        + "<br>";*/
-    };
+                /*lista.innerHTML += 
+                "ID: " + listaTransacoes[i].id + "<br>" 
+                + "Data Criada: " + listaTransacoes[i].dataCriada + "<br>"
+                + "Valor: " + listaTransacoes[i].valor + "<br>"
+                + "Tipo: " + listaTransacoes[i].tipo + "<br>"
+                + "Status: " + listaTransacoes[i].status + "<br>"
+                + "Data de Vencimento: " + listaTransacoes[i].dataVencimento + "<br>"
+                + "Link Download: " + listaTransacoes[i].pdf + "<br>"
+                +
+                " <a href='#' onclick='enviar("+listaTransacoes[i].id+")'>Enviar no Whatsapp</a> "
+                +
+                "<br>-----------"
+                + "<br>";*/
+            };
+            $(".detalhes").css("display", "block")
+            $(".container-login").css("display", "none")
+        } else {
+            if (listaTransacoes.info == "No transactions found.") {
+                alert('Não foi encontrado nenhum boleto para o seu cadastro. Se necessário, entre em contato para mais informações.')
+            }
+            if (listaTransacoes.info ==  "User not found.") {
+                alert('Não foi encontrado nenhum cadastro para o CPF/CNPJ informado. Se necessário, entre em contato para mais informações.')
+            }
+            return;
+        }
+        
+        
       }
     };
-    $(".detalhes").css("display", "block")
-    $(".container-login").css("display", "none")
+    
     xhttp.open("get", "http://localhost:8000/api/transacoes/"+id, false);
     xhttp.send();
    

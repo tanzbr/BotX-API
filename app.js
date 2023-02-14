@@ -85,6 +85,15 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                 console.log("id2:"+idCliente)
 
                 var dados = JSON.parse(this.responseText).data
+
+                if (dados[0] == null) {
+                    res.json({
+                        "message":"error",
+                        "info":"No transactions found."
+                    })
+                    return
+                }
+            
                 var transacoes = [];
 
                 for (var i = 0; i < dados.length; i++) {
@@ -105,7 +114,6 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                         "dataVencimento": "${dataVencimento}",
                         "pdf": "${pdf}"
                     }`)
-
                     transacoes.push(datajson)
                 }
 
