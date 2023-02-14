@@ -31,7 +31,6 @@ body {
 .container-login .login-header h1 {
   font-size: 40px;
   margin-bottom: 10px;
-  white-space: nowrap;
 }
 .container-login .login-header p {
   opacity: 0.7;
@@ -51,23 +50,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 35px;
-}
-.container-login .login-form-footer {
-  display: flex;
-  gap: 30px;
-  margin-top: 70px;
-}
-.container-login .login-form-footer a {
-  flex: 6;
-  gap: 15px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  color: black;
-  text-decoration: none;
-}
-.container-login .login-form-footer a:hover {
-  text-decoration: underline;
 }
 .container-login .form-item label:not(.checkboxLabel) {
   display: inline-block;
@@ -124,10 +106,32 @@ body {
     gap: 15px;
   }
 }
+.login-form-footer {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.login-form-footer a {
+  flex: 6;
+  gap: 15px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+.login-form-footer a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .login-header h1 {
     text-align: center;
-    font-size: 30px;
+    font-size: 30px !important;
   }
   .login-header p {
     text-align: center;
