@@ -127,6 +127,7 @@ body {
 @media (max-width: 768px) {
   .login-header h1 {
     text-align: center;
+    font-size: 30px;
   }
   .login-header p {
     text-align: center;
@@ -159,6 +160,7 @@ body {
   }
   .login-left {
     padding-top: 20px !important;
+    max-width: 100vw;
   }
   .login-right {
     display: none !important;
