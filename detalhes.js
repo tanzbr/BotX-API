@@ -30,11 +30,9 @@ function carregarLista() {
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
         let listaTransacoes = JSON.parse(xhttp.responseText);
-        console.log(listaTransacoes)
         
         for (var i = 0; i < listaTransacoes.length; i++) {
         //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
-        console.log(criarElemento(listaTransacoes, i))
         $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
 
         /*lista.innerHTML += 
@@ -65,7 +63,7 @@ li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"sele
 li += "            <div class=\"col col-1\" data-label=\"\">";
 li += "              ";
 li += "                      <div class=\"cbx\">";
-li += "        <input id=\"cbx\" type=\"checkbox\"\/>";
+li += "        <input id=\"cbx\" onclick=\"stopProp(e)\"  type=\"checkbox\"\/>";
 li += "        <label for=\"cbx\"><\/label>";
 li += "        <svg width=\"15\" height=\"14\" viewbox=\"0 0 15 14\" fill=\"none\">";
 li += "          <path d=\"M2 8.36364L6.23077 12L13 2\"><\/path>";
@@ -99,7 +97,11 @@ li.replaceAll("varID", listaTransacoes[i].id)
 return li
 }
 
-function select(id) {
+/*function select(id) {
   var input = document.querySelectorAll('#'+id+' input');
-  input[0].click();
-}
+  if (input[0].checked) {
+    input[0].checked = false;
+  } else {
+    input[0].checked = true;
+  }
+} */
