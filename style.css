@@ -174,6 +174,27 @@ body {
 .detalhes {
   background-color: white;
   display: none;
+  /* button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: linear-gradient(45deg, #10861e, #21f38a);
+      color: white;
+      padding: 1rem;
+      border-radius: 100px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 18px;
+      height: 55px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+      button svg {
+          margin-right: 4px;
+      }*/
 
 }
 .detalhes .btn {
@@ -182,31 +203,86 @@ body {
   justify-content: center;
   margin-top: 30px;
 }
+.detalhes .multi-button {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.detalhes .multi-button .btnBack {
+  font-weight: 400;
+  font-size: 17px !important;
+  background-color: #dfdfdf;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.detalhes .multi-button .btnEnviar {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: rgb(58, 145, 51);
+  background: linear-gradient(90deg, rgb(58, 145, 51) 0%, rgb(29, 236, 49) 100%);
+  color: white;
+  font-weight: 600;
+}
+.detalhes .multi-button button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19.5px;
+  padding: 0.5em 1em;
+  background: #fff;
+  color: #4A5568;
+  border: 0px solid #A0AEC0;
+  margin: 0.1em;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 0 0 #BEE3F8;
+  transform: translateY(0);
+}
+.detalhes .multi-button button i {
+  color: white;
+  margin-right: 0.3em;
+  transition: all 0.2s ease-out;
+}
+.detalhes .multi-button button i .iconBack {
+  width: 15px;
+  height: 20px;
+}
+.detalhes .multi-button button i svg {
+  width: 30px;
+  height: 30px;
+}
+.detalhes .multi-button button:first-of-type {
+  border-radius: 0.5em 0 0 0.5em;
+}
+.detalhes .multi-button button:last-of-type {
+  border-radius: 0 0.5em 0.5em 0;
+}
+.detalhes .multi-button:hover .btnEnviar:hover {
+  color: #fff;
+  background: rgb(58, 145, 51);
+  background: linear-gradient(90deg, rgb(58, 145, 51) 0%, rgb(29, 236, 49) 100%);
+  box-shadow: 0 0 0.8em 0 #1eb321;
+  transform: scale(1.05);
+}
+.detalhes .multi-button:hover .btnEnviar:hover .iconBackPath {
+  fill: white;
+}
+.detalhes .multi-button:hover .btnEnviar:hover i {
+  color: #FED7E2;
+  transform: rotate(-10deg);
+}
+.detalhes .multi-button:hover .btnBack:hover {
+  box-shadow: 0 0 0.8em 0 rgba(0, 0, 0, 0.4823529412);
+  transform: scale(1.05);
+}
+.detalhes .multi-button:hover .btnBack:hover i {
+  color: #FED7E2;
+  transform: rotate(-10deg);
+}
 .detalhes span {
   margin-top: 5px;
   text-align: center;
   width: 100%;
   display: block;
-}
-.detalhes button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: linear-gradient(45deg, #10861e, #21f38a);
-  color: white;
-  padding: 1rem;
-  border-radius: 100px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 18px;
-  height: 55px;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-.detalhes button svg {
-  margin-right: 4px;
 }
 .detalhes .container {
   max-width: 500px;
