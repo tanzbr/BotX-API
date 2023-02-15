@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/style.css', function (req, res) {
-    res.sendFile(path.join(__dirname, '/resourcers/style/style.css'))
+    res.sendFile(path.join(__dirname, '/resources/style/style.css'))
 })
 
 app.get('/RecoletaAlt-SemiBold.ttf', function (req, res) {
@@ -27,11 +27,11 @@ app.get('/RecoletaAlt-SemiBold.ttf', function (req, res) {
 })
 
 app.get('/logo.svg', function (req, res) {
-    res.sendFile(path.join(__dirname, '/resourcers/img/logo.svg'))
+    res.sendFile(path.join(__dirname, '/resources/img/logo.svg'))
 })
 
 app.get('/image.svg', function (req, res) {
-    res.sendFile(path.join(__dirname, '/resourcers/img/image.svg'))
+    res.sendFile(path.join(__dirname, '/resources/img/image.svg'))
 })
 
 app.get('/jquery.mask.js', function (req, res) {
