@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -208,6 +208,12 @@ body {
   margin-top: 30px;
   align-items: center;
   justify-content: center;
+  /*button:first-of-type{
+  border-radius: .5em 0 0 .5em;
+  }
+  button:last-of-type{
+  border-radius: 0 .5em .5em 0;
+  }*/
 }
 .detalhes .multi-button .btnBack {
   font-weight: 400;
@@ -231,6 +237,7 @@ body {
   padding: 0.5em 1em;
   background: #fff;
   color: #4A5568;
+  border-radius: 15px;
   border: 0px solid #A0AEC0;
   margin: 0.1em;
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -249,12 +256,6 @@ body {
 .detalhes .multi-button button i svg {
   width: 30px;
   height: 30px;
-}
-.detalhes .multi-button button:first-of-type {
-  border-radius: 0.5em 0 0 0.5em;
-}
-.detalhes .multi-button button:last-of-type {
-  border-radius: 0 0.5em 0.5em 0;
 }
 .detalhes .multi-button:hover .btnEnviar:hover {
   color: #fff;
@@ -283,6 +284,7 @@ body {
   text-align: center;
   width: 100%;
   display: block;
+  font-size: 13px;
 }
 .detalhes .container {
   max-width: 500px;
@@ -301,6 +303,7 @@ body {
   font-size: 0.5em;
 }
 .detalhes p {
+  font-size: 15px;
   margin-top: 2px;
   text-align: center;
   -webkit-margin-before: 10px;
@@ -435,6 +438,9 @@ body {
     box-sizing: border-box;
     overflow: hidden;
     margin: 5px;
+  }
+  .detalhes .responsive-table .col {
+    font-size: 13px;
   }
   .detalhes .responsive-table .col {
     padding-right: 5px !important;

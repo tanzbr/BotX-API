@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -222,6 +222,7 @@ body {
     padding: .5em 1em;
     background: #fff;
     color: #4A5568;
+    border-radius: 15px;
     border: 0px solid #A0AEC0;
     margin: .1em;
     transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
@@ -243,12 +244,12 @@ body {
       }
     }
     
-    button:first-of-type{
+    /*button:first-of-type{
     border-radius: .5em 0 0 .5em;
     }
     button:last-of-type{
     border-radius: 0 .5em .5em 0;
-    }
+    }*/
     
   }
   
@@ -284,6 +285,7 @@ body {
     text-align: center;
     width: 100%;
     display: block;
+    font-size: 13px;
   }
 
  /* button {
@@ -327,6 +329,7 @@ body {
   }
   
   p {
+    font-size: 15px;
     margin-top: 2px;
     text-align: center;
     margin-block-start: 10px;
@@ -461,6 +464,7 @@ body {
     }
     .responsive-table .col {
       // flex-basis: 100%;
+      font-size: 13px
     }
     .responsive-table .col {
       padding-right: 5px !important;

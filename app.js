@@ -79,6 +79,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
             return
         }
         idCliente = dadosCliente.data[0].id;
+        nomeCliente = dadosCliente.data[0].name;
         
         xhttp2.onreadystatechange = function logger() {
             if (this.readyState === 4 && this.status === 200) {
@@ -105,6 +106,11 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                     var dataVencimento = formatDate(dados[i].dueDate)
                     var pdf = dados[i].bankSlipUrl
 
+                    valor = (valor).toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                      })
+
                     if (status == "PENDING") {status = "À VENCER"}
                     if (status == "RECEIVED" || status == "CONFIRMED" || status == "RECEIVED_IN_CASH") {status = "PAGO"}
                     if (status == "OVERDUE") {status = "VENCIDO"}
@@ -112,6 +118,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
 
                     var datajson = JSON.parse(`{
                         "id": "${id}",
+                        "cliente": "${nomeCliente}",
                         "dataCriada": "${dataCriada}",
                         "valor": "${valor}",
                         "tipo": "${tipo}",
@@ -121,10 +128,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                     }`)
                     transacoes.push(datajson)
                 }
-
-                res.json(
-                    transacoes.reverse()
-                )
+                res.json(transacoes.reverse())
             }
         }
         xhttp2.open('GET', `https://www.asaas.com/api/v3/payments?customer=${idCliente}`, true);

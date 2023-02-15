@@ -97,8 +97,9 @@ function carregarLista(id) {
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
         let listaTransacoes = JSON.parse(xhttp.responseText);
+
         if (listaTransacoes.info == null) {
-            
+            $("#cliente").text("Cliente: " +listaTransacoes[0].cliente);
             for (var i = 0; i < listaTransacoes.length; i++) {
                 //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
                 $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
@@ -166,7 +167,7 @@ li += "            <\/div>";
 li += "            <div class=\"col col-2\" data-label=\"Vencimento\"> " +listaTransacoes[i].dataVencimento +"<\/div>";
 li += "            <div class=\"col col-3\" data-label=\"Status\">" +listaTransacoes[i].status+"<\/div>";
 li += "            <div class=\"col col-4\" data-label=\" Valor \">";
-li += "              R$" +listaTransacoes[i].valor;
+li += "              " +listaTransacoes[i].valor;
 li += "            <\/div>";
 li += "          <\/li>";
 
