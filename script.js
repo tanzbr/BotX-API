@@ -188,3 +188,9 @@ return li
   }
 } */
 
+
+function voltar() {
+    $(".detalhes").css("display", "none")
+    $(".container-login").css("display", "grid")
+    $('.responsive-table .table-row').remove()
+}
