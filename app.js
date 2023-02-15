@@ -2,7 +2,6 @@ var express = require("express");
 var path = require('path');
 var cors = require('cors');
 var XMLHttpRequest = require('xhr2');
-//var db = require("./database.js")
 
 var app = express();
 
@@ -108,10 +107,10 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                       })
 
                     if (status == "PENDING") {status = "À VENCER"}
-                    if (status == "RECEIVED" || status == "CONFIRMED" || status == "RECEIVED_IN_CASH") {status = "PAGO"}
+                    if (status == "RECEIVED" || status == "CONFIRMED" || status == "RECEIVED_IN_CASH") {status = "PAGO"; continue}
                     if (status == "OVERDUE") {status = "VENCIDO"}
                     if (status == "REFUNDED") {status = "ESTORNADO"}
-
+                    
                     var datajson = JSON.parse(`{
                         "id": "${id}",
                         "cliente": "${nomeCliente}",
