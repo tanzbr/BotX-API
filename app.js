@@ -19,11 +19,19 @@ app.get('/', function (req, res) {
 })
 
 app.get('/style.css', function (req, res) {
-    res.sendFile(path.join(__dirname, '/style.css'))
+    res.sendFile(path.join(__dirname, '/resourcers/style/style.css'))
+})
+
+app.get('/RecoletaAlt-SemiBold.ttf', function (req, res) {
+    res.sendFile(path.join(__dirname, '/resources/font/RecoletaAlt-SemiBold.ttf'))
+})
+
+app.get('/logo.svg', function (req, res) {
+    res.sendFile(path.join(__dirname, '/resourcers/img/logo.svg'))
 })
 
 app.get('/image.svg', function (req, res) {
-    res.sendFile(path.join(__dirname, '/image.svg'))
+    res.sendFile(path.join(__dirname, '/resourcers/img/image.svg'))
 })
 
 app.get('/jquery.mask.js', function (req, res) {
@@ -32,18 +40,6 @@ app.get('/jquery.mask.js', function (req, res) {
 
 app.get('/script.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/script.js'))
-})
-
-app.get('/detalhes.js', function (req, res) {
-    res.sendFile(path.join(__dirname, '/detalhes.js'))
-})
-
-app.get('/detalhes.css', function (req, res) {
-    res.sendFile(path.join(__dirname, '/detalhes.css'))
-})
-
-app.get('/detalhes.html', function (req, res) {
-    res.sendFile(path.join(__dirname, '/detalhes.html'))
 })
 
 app.get("/api/cliente/:id", (req, res, next) => {

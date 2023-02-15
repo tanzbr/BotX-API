@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Recoleta";
+  src: url("/RecoletaAlt-SemiBold.ttf");
+}
 body {
   padding: 0;
   margin: 0;
@@ -27,13 +31,16 @@ body {
 }
 .container-login .login-header {
   margin-bottom: 40px;
+  max-width: 450px;
 }
 .container-login .login-header h1 {
+  font-family: "Recoleta", sans-serif;
   font-size: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 .container-login .login-header p {
   opacity: 0.7;
+  margin-top: 4px;
 }
 .container-login .login-right {
   background-color: #eee;
@@ -82,7 +89,7 @@ body {
 }
 .container-login button {
   border: none;
-  background: linear-gradient(45deg, #131086, #b621f3);
+  background: #0140EA;
   color: white;
   padding: 1rem;
   border-radius: 100px;
@@ -99,6 +106,10 @@ body {
     padding: 40px !important;
   }
   .login-form {
+    width: 100% !important;
+  }
+  .login-header {
+    max-width: 100% !important;
     width: 100% !important;
   }
   .login-form-footer {
@@ -161,7 +172,7 @@ body {
     justify-content: center;
   }
   .mobile-logo img {
-    width: 30%;
+    width: 80%;
   }
   .login-left {
     padding-top: 20px !important;
@@ -323,10 +334,11 @@ body {
   margin-bottom: 10px;
 }
 .detalhes .responsive-table .table-header {
-  background-color: #95A5A6;
+  background-color: #0140EA;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  color: white;
 }
 .detalhes .responsive-table .table-row {
   background-color: #ffffff;
