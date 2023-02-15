@@ -3,7 +3,7 @@ const inputTel = document.getElementById('telefone')
 const regexCpf = new RegExp('([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})');
 const regexTelefone = new RegExp('^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$', '')
 
-
+var listaTransacoes;
 var httpUrl = "http://10.20.20.70:8000/"
 
 
@@ -96,7 +96,7 @@ function carregarLista(id) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
-        let listaTransacoes = JSON.parse(xhttp.responseText);
+        listaTransacoes = JSON.parse(xhttp.responseText);
 
         if (listaTransacoes.info == null) {
             $("#cliente").text("Cliente: " +listaTransacoes[0].cliente);
@@ -141,11 +141,11 @@ function carregarLista(id) {
 
 function criarElemento(listaTransacoes, i) {
   var li="";
-li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"select('"+ listaTransacoes[i].id +"')\">";
+li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"\">";
 li += "            <div class=\"col col-1\" data-label=\"\">";
 li += "              ";
-li += "                      <div class=\"cbx\">";
-li += "        <input id=\"cbx\" onclick=\"stopProp(e)\"  type=\"checkbox\"\/>";
+li += "                      <div class=\"cbx\" onclick=\"select('" + listaTransacoes[i].id +"')\">";
+li += "        <input class=\"cbx1\" type=\"checkbox\"\/>";
 li += "        <label for=\"cbx\"><\/label>";
 li += "        <svg width=\"15\" height=\"14\" viewbox=\"0 0 15 14\" fill=\"none\">";
 li += "          <path d=\"M2 8.36364L6.23077 12L13 2\"><\/path>";
@@ -194,3 +194,39 @@ function voltar() {
     $(".container-login").css("display", "grid")
     $('.responsive-table .table-row').remove()
 }
+
+
+var selected = [];
+
+function select(data) {
+    if (!selected.includes(data)) {
+        selected.push(data)
+    } else {
+        selected.splice(selected.indexOf(data), 1)
+    }
+    console.log(selected)
+}
+
+function sendWpp() {
+    var data = {
+        "number":"5563981452751",
+        "name":"Aliryo",
+        "data": []
+    }
+    var boletos = []
+    console.log(listaTransacoes)
+    for (var i = 0; i < listaTransacoes.length; i++){
+        if (selected.includes(listaTransacoes[i].id)) {
+            boletos.push({
+                "pdf":listaTransacoes[i].pdf,
+                "vencimento":listaTransacoes[i].dataVencimento
+            })
+        }
+    };
+        
+    data.data = boletos
+    console.log(data)
+}
+
+
+
