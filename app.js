@@ -44,14 +44,14 @@ app.get('/script.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/script.js'))
 })
 
-app.post('/api/sendWpp', function (req, res) {
+app.post('/api/sendWpp', async function (req, res) {
+    console.log(req.body)
+    var status = await bot.sendMsg(req.body);
     res.json(
         {
-            "message":"success"
+            "message":status
         }
     )
-    console.log(req.body)
-    bot.sendMsg(req.body)
 })
 
 app.get("/api/cliente/:id", (req, res, next) => {

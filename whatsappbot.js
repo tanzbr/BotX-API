@@ -28,7 +28,14 @@ const sendMsg = async function(data) {
     const nome = data.name;
     var id = await client.getNumberId(data.number)
     const boletos = data.data;
+
+    if (id == null) {
+        console.log("Não foi possível encontrar o número de WhatsApp. Por favor, confira o número novamente.")
+        return "Não foi possível encontrar o número de WhatsApp. Por favor, confira o número novamente."
+    }
+
     id = id._serialized
+
     if (boletos.length == 1) {
         client.sendMessage(id, "Olá, "+nome+"! Aqui está o seu boleto!")
     } else {
@@ -44,6 +51,14 @@ const sendMsg = async function(data) {
         client.sendMessage(id, media)
     }
 
+    if (boletos.length == 1) {
+        console.log("O boleto foi enviado ao número informado! Obrigado.")
+        return "O boleto foi enviado ao número informado! Obrigado."
+    } else {
+        console.log("Os boletos foram enviados ao número informado! Obrigado.")
+        return "Os boletos foram enviados ao número informado! Obrigado."
+    }
+   
 }
 
 module.exports = { 

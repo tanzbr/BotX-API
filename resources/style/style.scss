@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -17,6 +18,8 @@ body {
   padding: 0px;
 }
 
+
+
 .container-login {
 
   min-height: 100vh;
@@ -24,6 +27,11 @@ body {
   grid-template-columns: 50% 50%;
   border-radius: 0px;
   overflow: hidden;
+
+  #telefone {
+    padding-left: 38px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="55"><text x="10" y="31" style="font: 14px Arial;">+55</text></svg>') no-repeat !important;
+  }
 
   .login-left {
     display: flex;

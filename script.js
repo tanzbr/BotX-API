@@ -4,7 +4,7 @@ const regexCpf = new RegExp('([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]
 const regexTelefone = new RegExp('^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$', '')
 
 var listaTransacoes;
-var httpUrl = "http://10.20.20.70:8000/"
+var httpUrl = "http://10.20.20.70:80/"
 var cliente;
 var number;
 
@@ -148,14 +148,13 @@ function criarElemento(listaTransacoes, i) {
 li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"\">";
 li += "            <div class=\"col col-1\" data-label=\"\">";
 li += "              ";
-li += "                      <div class=\"cbx\" onclick=\"select('" + listaTransacoes[i].id +"')\">";
-li += "        <input class=\"cbx1\" type=\"checkbox\"\/>";
+li += "                      <div class=\"cbx\" onclick=\"select('" + listaTransacoes[i].id +"')\" >";
+li += "        <input class=\"cbx1\" id=\"check_"+ listaTransacoes[i].id +"\" type=\"checkbox\"\/>";
 li += "        <label for=\"cbx\"><\/label>";
 li += "        <svg width=\"15\" height=\"14\" viewbox=\"0 0 15 14\" fill=\"none\">";
 li += "          <path d=\"M2 8.36364L6.23077 12L13 2\"><\/path>";
 li += "        <\/svg>";
 li += "      <\/div>";
-li += "      <!-- Gooey-->";
 li += "      <svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" version=\"1.1\" style=\"width: 24px !important;";
 li += "        height: 24px !important;\">";
 li += "        <defs>";
@@ -206,13 +205,20 @@ var selected = [];
 function select(data) {
     if (!selected.includes(data)) {
         selected.push(data)
+        $("#check_"+data).prop( "checked", true );
     } else {
         selected.splice(selected.indexOf(data), 1)
+        $("#check_"+data).prop( "checked", false );
     }
     console.log(selected)
 }
 
 function sendWpp() {
+
+    $('input').each(function() {
+        this.checked = false;
+    });
+
     var data = {
         "number": "55"+number,
         "name": cliente.split(" ")[0],
@@ -234,15 +240,15 @@ function sendWpp() {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
-        if(JSON.parse(xhttp.responseText).message == "success") {
-            alert("Os boletos foram enviados ao número informado! Obrigado.")
-        }
+        alert(JSON.parse(xhttp.responseText).message)
       }
     }
     xhttp.open("POST", httpUrl+"api/sendWpp", true);
     console.log(JSON.stringify(data))
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify(data));
+
+    selected = [];
 }
 
 
