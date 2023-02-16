@@ -5,6 +5,8 @@ var XMLHttpRequest = require('xhr2');
 var bot = require("./whatsappbot.js")
 var app = express();
 
+var token_asas = "***REMOVED***"
+
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -65,7 +67,7 @@ app.get("/api/cliente/:id", (req, res, next) => {
       }
     };
     xhttp.open('GET', `https://www.asaas.com/api/v3/customers?cpfCnpj=${id}`, true);
-    xhttp.setRequestHeader("access-token", "***REMOVED***")
+    xhttp.setRequestHeader("access-token", token_asas)
     xhttp.send();
 });
 
@@ -122,7 +124,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                     if (status == "PENDING") {status = "À VENCER"}
                     if (status == "RECEIVED" || status == "CONFIRMED" || status == "RECEIVED_IN_CASH") {status = "PAGO"; continue}
                     if (status == "OVERDUE") {status = "VENCIDO"}
-                    if (status == "REFUNDED") {status = "ESTORNADO"}
+                    if (status == "REFUNDED") {status = "ESTORNADO"; continue}
                     
                     var datajson = JSON.parse(`{
                         "id": "${id}",
@@ -140,13 +142,13 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
             }
         }
         xhttp2.open('GET', `https://www.asaas.com/api/v3/payments?customer=${idCliente}`, true);
-        xhttp2.setRequestHeader("access-token", "***REMOVED***")
+        xhttp2.setRequestHeader("access-token", token_asas)
         xhttp2.send();
 
       }
     };
     xhttp.open('GET', `https://www.asaas.com/api/v3/customers?cpfCnpj=${id}`, true);
-    xhttp.setRequestHeader("access-token", "***REMOVED***")
+    xhttp.setRequestHeader("access-token", token_asas)
     xhttp.send();
 });
 
