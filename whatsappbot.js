@@ -1,48 +1,28 @@
 const qrcode = require('qrcode-terminal');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 
-const { Client } = require('whatsapp-web.js');
-const client = new Client();
+const client = new Client({
+    authStrategy: new LocalAuth()
+});
 
 client.on('qr', qr => {
     console.log("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")
     qrcode.generate(qr, {small: true});
 });
+ 
+client.on('authenticated', () => {
+    console.log('Autenticado!');
+    //sendMsg(data)
+});
 
 client.on('ready', () => {
-    console.log('Client is ready!');
+    console.log('Bot pronto!');
     //sendMsg(data)
 });
 
 client.initialize();
 
 const { MessageMedia } = require('whatsapp-web.js');
-
-const data = {
-    "number": "5563981452751",
-    "name": "Aliryo",
-    "data": [
-        {
-            "pdf": "https://www.asaas.com/b/pdf/1899013684999443",
-            "vencimento": "10/03/2023"
-        },
-        {
-            "pdf": "https://www.asaas.com/b/pdf/5591667588691950",
-            "vencimento": "10/05/2023"
-        },
-        {
-            "pdf": "https://www.asaas.com/b/pdf/0348252710267828",
-            "vencimento": "10/06/2023"
-        },
-        {
-            "pdf": "https://www.asaas.com/b/pdf/3833623602207924",
-            "vencimento": "10/07/2023"
-        },
-        {
-            "pdf": "https://www.asaas.com/b/pdf/9443511635971330",
-            "vencimento": "10/08/2023"
-        }
-    ]
-}
 
 const sendMsg = async function(data) {
     const nome = data.name;

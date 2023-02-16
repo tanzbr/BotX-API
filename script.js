@@ -197,6 +197,7 @@ function voltar() {
     $(".detalhes").css("display", "none")
     $(".container-login").css("display", "grid")
     $('.responsive-table .table-row').remove()
+    selected = []
 }
 
 
@@ -234,7 +235,7 @@ function sendWpp() {
     xhttp.onreadystatechange = function logger() {
       if (this.readyState === 4 && this.status === 200) {
         if(JSON.parse(xhttp.responseText).message == "success") {
-            alert("Os boletos estão sendo enviados ao número informado! Obrigado.")
+            alert("Os boletos foram enviados ao número informado! Obrigado.")
         }
       }
     }
