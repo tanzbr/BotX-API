@@ -22,6 +22,11 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'))
 })
 
+app.get('/qrcode', function (req, res) {
+    res.send(`<img src="${bot.qrcodeWpp}"></img>`)
+    //res.sendFile(path.join(__dirname, '/index.html'))
+})
+
 app.get('/style.css', function (req, res) {
     res.sendFile(path.join(__dirname, '/resources/style/style.css'))
 })

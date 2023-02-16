@@ -1,5 +1,8 @@
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
+var qrcodeWpp;
+
+var qrcode2 = require('qrcode')
 
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -7,7 +10,12 @@ const client = new Client({
 
 client.on('qr', qr => {
     console.log("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")
-    qrcode.generate(qr, {small: true});
+    qrcode.generate(qr, {small: true})
+
+    qrcodeWpp = qrcode2.toDataURL(qr, function (err, url) {
+    console.log(url)
+    })
+    console.log(qrcodeWpp) // FALTA PASSAR PARA PAGINA WEB
 });
  
 client.on('authenticated', () => {
@@ -62,6 +70,7 @@ const sendMsg = async function(data) {
 }
 
 module.exports = { 
-    sendMsg
+    sendMsg,
+    qrcodeWpp
 }
 
