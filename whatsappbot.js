@@ -10,7 +10,7 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
-    sendMsg(data)
+    //sendMsg(data)
 });
 
 client.initialize();
@@ -44,7 +44,7 @@ const data = {
     ]
 }
 
-async function sendMsg(data) {
+const sendMsg = async function(data) {
     const nome = data.name;
     var id = await client.getNumberId(data.number)
     const boletos = data.data;
@@ -64,5 +64,9 @@ async function sendMsg(data) {
         client.sendMessage(id, media)
     }
 
+}
+
+module.exports = { 
+    sendMsg
 }
 

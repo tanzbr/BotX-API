@@ -2,9 +2,11 @@ var express = require("express");
 var path = require('path');
 var cors = require('cors');
 var XMLHttpRequest = require('xhr2');
-
+var bot = require("./whatsappbot.js")
 var app = express();
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
 var HTTP_PORT = 8000;
@@ -39,6 +41,16 @@ app.get('/jquery.mask.js', function (req, res) {
 
 app.get('/script.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/script.js'))
+})
+
+app.post('/api/sendWpp', function (req, res) {
+    res.json(
+        {
+            "message":"success"
+        }
+    )
+    console.log(req.body)
+    bot.sendMsg(req.body)
 })
 
 app.get("/api/cliente/:id", (req, res, next) => {

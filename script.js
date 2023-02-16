@@ -5,6 +5,8 @@ const regexTelefone = new RegExp('^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\
 
 var listaTransacoes;
 var httpUrl = "http://10.20.20.70:8000/"
+var cliente;
+var number;
 
 
 $("#cpfcnpj").on("keydown", (function(){
@@ -83,6 +85,7 @@ function btnSubmit() {
         alert("Por favor, digite um número de telefone válido.")
         return null;
     }
+    number = tel;
     carregarLista(id)
     //window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+id+"&tel="+tel)
 }
@@ -99,7 +102,8 @@ function carregarLista(id) {
         listaTransacoes = JSON.parse(xhttp.responseText);
 
         if (listaTransacoes.info == null) {
-            $("#cliente").text("Cliente: " +listaTransacoes[0].cliente);
+            cliente = listaTransacoes[0].cliente;
+            $("#cliente").text("Cliente: " +cliente);
             for (var i = 0; i < listaTransacoes.length; i++) {
                 //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
                 $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
@@ -209,8 +213,8 @@ function select(data) {
 
 function sendWpp() {
     var data = {
-        "number":"5563981452751",
-        "name":"Aliryo",
+        "number": "55"+number,
+        "name": cliente.split(" ")[0],
         "data": []
     }
     var boletos = []
@@ -218,14 +222,26 @@ function sendWpp() {
     for (var i = 0; i < listaTransacoes.length; i++){
         if (selected.includes(listaTransacoes[i].id)) {
             boletos.push({
-                "pdf":listaTransacoes[i].pdf,
-                "vencimento":listaTransacoes[i].dataVencimento
+                "pdf": listaTransacoes[i].pdf,
+                "vencimento": listaTransacoes[i].dataVencimento
             })
         }
     };
         
     data.data = boletos
-    console.log(data)
+    
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function logger() {
+      if (this.readyState === 4 && this.status === 200) {
+        if(JSON.parse(xhttp.responseText).message == "success") {
+            alert("Os boletos estão sendo enviados ao número informado! Obrigado.")
+        }
+      }
+    }
+    xhttp.open("POST", httpUrl+"api/sendWpp", true);
+    console.log(JSON.stringify(data))
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(data));
 }
 
 
