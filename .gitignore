@@ -3142,3 +3142,58 @@ node_modules/send/node_modules/mime/src/test.js
 .wwebjs_auth/session/Default/Session Storage/MANIFEST-000001
 .wwebjs_auth/session/Default/databases/Databases.db
 .wwebjs_auth/session/Default/databases/Databases.db-journal
+.wwebjs_auth/session/Crashpad/metadata
+.wwebjs_auth/session/Default/Cache/Cache_Data/f_00007b
+.wwebjs_auth/session/Default/Cache/Cache_Data/f_00007c
+.wwebjs_auth/session/Default/Cache/Cache_Data/f_00007d
+.wwebjs_auth/session/Default/Cache/Cache_Data/f_00007e
+.wwebjs_auth/session/Default/Cache/Cache_Data/f_00007f
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.blob/f/00/12
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.blob/f/00/e
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000525.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000526.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000527.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000528.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000529.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000530.log
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000532.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000533.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000707.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000778.log
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000782.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000783.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000784.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000785.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000786.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000787.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000788.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000789.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000790.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000791.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000792.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000793.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000794.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000795.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000796.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000797.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000798.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000799.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000800.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000801.ldb
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/0c99e0ed-bc14-4f86-90ab-63c807eaf46a/0f1b84252e365d7a_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/0c99e0ed-bc14-4f86-90ab-63c807eaf46a/33b78657f9f54c01_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/298701cb-5b17-4ff3-ad05-cea18fe3499c/02ca9611974fbd70_1
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/1a7ae894dc16a01e_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/3c4c8a57c7fa7e21_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/4f2a0b3a861556e3_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/8ed2a4d502727d4d_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/867a604a6f0a87af_0
+.wwebjs_auth/session/Default/Service Worker/CacheStorage/0bf6ab7f94a21cdc9c1649f884333ec20f40a544/56aaa6b0-4029-47f8-9673-e3d0e651a8cf/934a8dd389c48bdf_0
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000525.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000526.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000527.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000528.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000529.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000530.log
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000532.ldb
+.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000533.ldb
