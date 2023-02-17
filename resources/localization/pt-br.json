@@ -1,0 +1,14 @@
+{
+    "serverRunning":"Servidor rodando na porta: {port}",
+    "pending":"À VENCER",
+    "confirmed":"PAGO",
+    "overdue":"VENCIDO",
+    "bot-scanqr":"Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.",
+    "bot-authenticated":"Bot Autenticado!",
+    "bot-ready":"Bot Pronto!",
+    "not-whatsapp-number":"Não foi possível encontrar o número de WhatsApp. Por favor, confira o número novamente.",
+    "bot-msg-boleto":"Olá, {nome}! Aqui está o seu boleto!",
+    "bot-msg-boletos":"Olá, {nome}! Aqui estão os seus boletos!",
+    "boleto-sent":"O boleto foi enviado ao número informado! Obrigado.",
+    "boletos-sent":"Os boletos foram enviados ao número informado! Obrigado."
+}
