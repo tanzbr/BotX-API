@@ -3648,3 +3648,4 @@ node_modules/yargs-parser/LICENSE.txt
 node_modules/yargs-parser/package.json
 node_modules/yargs-parser/README.md
 node_modules/yargs-parser/lib/tokenize-arg-string.js
+node_modules/puppeteer/.local-chromium/win64-982053/chrome-win/debug.log

@@ -143,6 +143,13 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
                     }`)
                     transacoes.push(datajson)
                 }
+                if (transacoes == []) {
+                    res.json({
+                        "message":"error",
+                        "info":"No transactions found."
+                    })
+                    return
+                }
                 res.json(transacoes.reverse())
             }
         }
