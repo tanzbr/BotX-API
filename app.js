@@ -12,7 +12,7 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
-var HTTP_PORT = 80;
+var HTTP_PORT = 8080;
 
 app.listen(HTTP_PORT, () => {
     console.log("Servidor rodando na porta " + HTTP_PORT)
