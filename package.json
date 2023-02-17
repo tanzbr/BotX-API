@@ -1,4 +1,10 @@
 {
+  "name": "botx-api",
+  "description": "A API and Website to retrieve and send Boletos in WhatsApp",
+  "author": "Cauã <cauamelo2345@gmail.com>",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "cpf-cnpj-validator": "^1.0.3",
