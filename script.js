@@ -126,7 +126,7 @@ function carregarLista(id) {
             $(".container-login").css("display", "none")
         } else {
             if (listaTransacoes.info == "No transactions found.") {
-                alert('Não foi encontrado nenhum boleto para o seu cadastro. Se necessário, entre em contato para mais informações.')
+                alert('Não foi encontrado nenhum boleto em aberto para o seu cadastro. Se necessário, entre em contato para mais informações.')
             }
             if (listaTransacoes.info ==  "User not found.") {
                 alert('Não foi encontrado nenhum cadastro para o CPF/CNPJ informado. Se necessário, entre em contato para mais informações.')
