@@ -1,7 +1,9 @@
 {
   "name": "botx-api",
-  "description": "A API and Website to retrieve and send Boletos in WhatsApp",
+  "description": "A API and Website to retrieve and send invoices in WhatsApp",
   "author": "Cauã <cauamelo2345@gmail.com>",
+  "version": "1.0",
+  "main": "./app.js",
   "scripts": {
     "start": "node app.js"
   },

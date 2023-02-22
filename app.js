@@ -2,7 +2,7 @@ var express = require("express");
 var path = require('path');
 var cors = require('cors');
 var XMLHttpRequest = require('xhr2');
-var bot = require("./whatsappbot.js")
+var bot = require("./src/whatsapp_bot/whatsappbot.js")
 var app = express();
 
 var token_asas = "***REMOVED***"
@@ -18,8 +18,8 @@ app.listen(HTTP_PORT, () => {
     console.log("Servidor rodando na porta " + HTTP_PORT)
 });
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'))
+app.get('', function (req, res) {
+    res.sendFile(path.join(__dirname, '/src/pages/index.html'))
 })
 
 app.get('/qrcode', function (req, res) {
@@ -27,8 +27,8 @@ app.get('/qrcode', function (req, res) {
     //res.sendFile(path.join(__dirname, '/index.html'))
 })
 
-app.get('/style.css', function (req, res) {
-    res.sendFile(path.join(__dirname, '/resources/style/style.css'))
+app.get('/index/style.css', function (req, res) {
+    res.sendFile(path.join(__dirname, '/src/style/style.css'))
 })
 
 app.get('/RecoletaAlt-SemiBold.ttf', function (req, res) {
@@ -47,8 +47,8 @@ app.get('/jquery.mask.js', function (req, res) {
     res.sendFile(path.join(__dirname, '/node_modules/jquery-mask-plugin/src/jquery.mask.js'))
 })
 
-app.get('/script.js', function (req, res) {
-    res.sendFile(path.join(__dirname, '/script.js'))
+app.get('/index/script.js', function (req, res) {
+    res.sendFile(path.join(__dirname, '/src/pages/index.js'))
 })
 
 app.post('/api/sendWpp', async function (req, res) {
