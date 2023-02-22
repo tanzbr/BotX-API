@@ -8,65 +8,18 @@ var httpUrl = "http://149.56.85.70:8080/"
 var cliente;
 var number;
 
+$("#cpfcnpj").inputmask({
+    mask: ['999.999.999-99', '99.999.999/9999-99'],
+    keepStatic: true
+});
 
-$("#cpfcnpj").on("keydown", (function () {
-    try {
-        $("#cpfcnpj").unmask();
-    } catch (e) { }
-
-    var tamanho = $("#cpfcnpj").val().length;
-
-    /*if (tamanho < 10 || (tamanho > 10 && tamanho < 13) ) {
-        $("#cpfcnpj").css({"border":"1px solid red"});
-    } else {
-        $("#cpfcnpj").css({"border":"1px solid green"});
-    }*/
-    if (tamanho < 11) {
-        $("#cpfcnpj").mask("999.999.999-99");
-    } else {
-        $("#cpfcnpj").mask("99.999.999/9999-99");
-    }
-    // ajustando foco
-    var elem = this;
-    setTimeout(function () {
-        // mudo a posição do seletor
-        elem.selectionStart = elem.selectionEnd = 10000;
-    }, 0);
-    // reaplico o valor para mudar o foco
-    var currentValue = $(this).val();
-    $(this).val('');
-    $(this).val(currentValue);
-}));
-
-$("#telefone").on("keydown", (function () {
-    try {
-        $("#telefone").unmask();
-    } catch (e) { }
-
-    /*if ($("#telefone").val().length < 10) {
-        $("#telefone").css({"border":"1px solid red"});
-    } else {
-        $("#telefone").css({"border":"1px solid green"});
-    }*/
-    $("#telefone").mask('(00) 0 0000-0000', { translation: { 'Z': { pattern: /[0-9]/, optional: false } } });
-
-    // ajustando foco
-    var elem = this;
-    setTimeout(function () {
-        // mudo a posição do seletor
-        elem.selectionStart = elem.selectionEnd = 10000;
-    }, 0);
-    // reaplico o valor para mudar o foco
-    var currentValue = $(this).val();
-    $(this).val('');
-    $(this).val(currentValue);
-}));
+$("#telefone").inputmask({mask: ['+55 (99) 9999-9999', '+55 (99) 9 9999-9999'], greedy: false});
 
 function btnSubmit() {
     var id = inputId.value
     id = id.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
     var tel = inputTel.value
-    tel = tel.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "")
+    tel = tel.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "").replaceAll("+", "")
 
     if (id == "") {
         alert("Por favor, digite seu CPF ou CNPJ.")
@@ -193,7 +146,7 @@ function sendWpp() {
     });
 
     var data = {
-        "number": "55" + number,
+        "number": number,
         "name": cliente.split(" ")[0],
         "data": []
     }
