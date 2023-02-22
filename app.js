@@ -58,7 +58,7 @@ app.get("/jquery.mask.js", function (req, res) {
     );
 });
 
-app.get("/index/script.js", function (req, res) {
+app.get("/index/index.js", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/pages/index.js"));
 });
 

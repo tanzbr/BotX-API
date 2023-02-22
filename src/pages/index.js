@@ -37,6 +37,10 @@ function btnSubmit() {
         alert("Por favor, digite um número de telefone válido.")
         return null;
     }
+    if (document.getElementById("checkboxTerms").checked == false) {
+        alert("Por favor, concorde com os termos de uso para continuar.")
+        return null;
+    }
     number = tel;
     carregarLista(id)
     //window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+id+"&tel="+tel)
