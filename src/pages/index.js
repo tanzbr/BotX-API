@@ -9,10 +9,10 @@ var cliente;
 var number;
 
 
-$("#cpfcnpj").on("keydown", (function(){
+$("#cpfcnpj").on("keydown", (function () {
     try {
         $("#cpfcnpj").unmask();
-    } catch (e) {}
+    } catch (e) { }
 
     var tamanho = $("#cpfcnpj").val().length;
 
@@ -21,14 +21,14 @@ $("#cpfcnpj").on("keydown", (function(){
     } else {
         $("#cpfcnpj").css({"border":"1px solid green"});
     }*/
-    if(tamanho < 11){
+    if (tamanho < 11) {
         $("#cpfcnpj").mask("999.999.999-99");
     } else {
         $("#cpfcnpj").mask("99.999.999/9999-99");
     }
     // ajustando foco
     var elem = this;
-    setTimeout(function(){
+    setTimeout(function () {
         // mudo a posição do seletor
         elem.selectionStart = elem.selectionEnd = 10000;
     }, 0);
@@ -38,21 +38,21 @@ $("#cpfcnpj").on("keydown", (function(){
     $(this).val(currentValue);
 }));
 
-$("#telefone").on("keydown", (function(){
+$("#telefone").on("keydown", (function () {
     try {
         $("#telefone").unmask();
-    } catch (e) {}
+    } catch (e) { }
 
     /*if ($("#telefone").val().length < 10) {
         $("#telefone").css({"border":"1px solid red"});
     } else {
         $("#telefone").css({"border":"1px solid green"});
     }*/
-    $("#telefone").mask('(00) 0 0000-0000', {translation:  {'Z': {pattern: /[0-9]/, optional: false}}});
+    $("#telefone").mask('(00) 0 0000-0000', { translation: { 'Z': { pattern: /[0-9]/, optional: false } } });
 
     // ajustando foco
     var elem = this;
-    setTimeout(function(){
+    setTimeout(function () {
         // mudo a posição do seletor
         elem.selectionStart = elem.selectionEnd = 10000;
     }, 0);
@@ -67,7 +67,6 @@ function btnSubmit() {
     id = id.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
     var tel = inputTel.value
     tel = tel.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "")
-    console.log(tel + " - " + id)
 
     if (id == "") {
         alert("Por favor, digite seu CPF ou CNPJ.")
@@ -94,103 +93,80 @@ function btnSubmit() {
 
 // detalhes
 function carregarLista(id) {
-    console.log("Carregando Lista...")
+    console.log("Carregando lista de transações...")
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function logger() {
-      if (this.readyState === 4 && this.status === 200) {
-        listaTransacoes = JSON.parse(xhttp.responseText);
+        if (this.readyState === 4 && this.status === 200) {
+            listaTransacoes = JSON.parse(xhttp.responseText);
 
-        if (listaTransacoes.info == null) {
-            cliente = listaTransacoes[0].cliente;
-            $("#cliente").text("Cliente: " +cliente);
-            for (var i = 0; i < listaTransacoes.length; i++) {
-                //document.getElementById("table").innerHTML += '<div class="row"><div class="cell" data-title="Boleto">#1</div><div class="cell" data-title="Status">Aguardando Pagamento</div><div class="cell" data-title="Valor">R$240</div><div class="cell" data-title="Criada em">22/01/2023</div><div class="cell" data-title="Vencimento">25/02/2023</div><div class="cell" data-title="Baixar">Baixar | WhatsApp</div></div>';
-                $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
-        
-                /*lista.innerHTML += 
-                "ID: " + listaTransacoes[i].id + "<br>" 
-                + "Data Criada: " + listaTransacoes[i].dataCriada + "<br>"
-                + "Valor: " + listaTransacoes[i].valor + "<br>"
-                + "Tipo: " + listaTransacoes[i].tipo + "<br>"
-                + "Status: " + listaTransacoes[i].status + "<br>"
-                + "Data de Vencimento: " + listaTransacoes[i].dataVencimento + "<br>"
-                + "Link Download: " + listaTransacoes[i].pdf + "<br>"
-                +
-                " <a href='#' onclick='enviar("+listaTransacoes[i].id+")'>Enviar no Whatsapp</a> "
-                +
-                "<br>-----------"
-                + "<br>";*/
-            };
-            $(".detalhes").css("display", "block")
-            $(".container-login").css("display", "none")
-        } else {
-            if (listaTransacoes.info == "No transactions found.") {
-                alert('Não foi encontrado nenhum boleto em aberto para o seu cadastro. Se necessário, entre em contato para mais informações.')
+            if (listaTransacoes.info == null) {
+                cliente = listaTransacoes[0].cliente;
+                $("#cliente").text("Cliente: " + cliente);
+                for (var i = 0; i < listaTransacoes.length; i++) {
+                    $(".responsive-table").append($(criarElemento(listaTransacoes, i)))
+                };
+                $(".detalhes").css("display", "block")
+                $(".container-login").css("display", "none")
+            } else {
+                if (listaTransacoes.info == "No transactions found.") {
+                    alert('Não foi encontrado nenhum boleto em aberto para o seu cadastro. Se necessário, entre em contato para mais informações.')
+                }
+                if (listaTransacoes.info == "User not found.") {
+                    alert('Não foi encontrado nenhum cadastro para o CPF/CNPJ informado. Se necessário, entre em contato para mais informações.')
+                }
+                return;
             }
-            if (listaTransacoes.info ==  "User not found.") {
-                alert('Não foi encontrado nenhum cadastro para o CPF/CNPJ informado. Se necessário, entre em contato para mais informações.')
-            }
-            return;
+
+
         }
-        
-        
-      }
     };
-    
-    xhttp.open("get", httpUrl+"api/transacoes/"+id, false);
+
+    xhttp.open("get", httpUrl + "api/transacoes/" + id, false);
     xhttp.send();
-   
+
 }
 
 function criarElemento(listaTransacoes, i) {
-  var li="";
-li += "<li class=\"table-row\" id=\""+ listaTransacoes[i].id +"\" onclick=\"\">";
-li += "            <div class=\"col col-1\" data-label=\"\">";
-li += "              ";
-li += "                      <div class=\"cbx\" onclick=\"select('" + listaTransacoes[i].id +"')\" >";
-li += "        <input class=\"cbx1\" id=\"check_"+ listaTransacoes[i].id +"\" type=\"checkbox\"\/>";
-li += "        <label for=\"cbx\"><\/label>";
-li += "        <svg width=\"15\" height=\"14\" viewbox=\"0 0 15 14\" fill=\"none\">";
-li += "          <path d=\"M2 8.36364L6.23077 12L13 2\"><\/path>";
-li += "        <\/svg>";
-li += "      <\/div>";
-li += "      <svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" version=\"1.1\" style=\"width: 24px !important;";
-li += "        height: 24px !important;\">";
-li += "        <defs>";
-li += "          <filter id=\"goo\">";
-li += "            <fegaussianblur in=\"SourceGraphic\" stddeviation=\"4\" result=\"blur\"><\/fegaussianblur>";
-li += "            <fecolormatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7\" result=\"goo\"><\/fecolormatrix>";
-li += "            <feblend in=\"SourceGraphic\" in2=\"goo\"><\/feblend>";
-li += "          <\/filter>";
-li += "        <\/defs>";
-li += "      <\/svg>";
-li += "              ";
-li += "            <\/div>";
-li += "            <div class=\"col col-2\" data-label=\"Vencimento\"> " +listaTransacoes[i].dataVencimento +"<\/div>";
-li += "            <div class=\"col col-3\" data-label=\"Status\">" +listaTransacoes[i].status+"<\/div>";
-li += "            <div class=\"col col-4\" data-label=\" Valor \">";
-li += "              " +listaTransacoes[i].valor;
-li += "            <\/div>";
-li += "          <\/li>";
+    var li = "";
+    li += "<li class=\"table-row\" id=\"" + listaTransacoes[i].id + "\" onclick=\"\">";
+    li += "            <div class=\"col col-1\" data-label=\"\">";
+    li += "              ";
+    li += "                      <div class=\"cbx\" onclick=\"select('" + listaTransacoes[i].id + "')\" >";
+    li += "        <input class=\"cbx1\" id=\"check_" + listaTransacoes[i].id + "\" type=\"checkbox\"\/>";
+    li += "        <label for=\"cbx\"><\/label>";
+    li += "        <svg width=\"15\" height=\"14\" viewbox=\"0 0 15 14\" fill=\"none\">";
+    li += "          <path d=\"M2 8.36364L6.23077 12L13 2\"><\/path>";
+    li += "        <\/svg>";
+    li += "      <\/div>";
+    li += "      <svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" version=\"1.1\" style=\"width: 24px !important;";
+    li += "        height: 24px !important;\">";
+    li += "        <defs>";
+    li += "          <filter id=\"goo\">";
+    li += "            <fegaussianblur in=\"SourceGraphic\" stddeviation=\"4\" result=\"blur\"><\/fegaussianblur>";
+    li += "            <fecolormatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7\" result=\"goo\"><\/fecolormatrix>";
+    li += "            <feblend in=\"SourceGraphic\" in2=\"goo\"><\/feblend>";
+    li += "          <\/filter>";
+    li += "        <\/defs>";
+    li += "      <\/svg>";
+    li += "              ";
+    li += "            <\/div>";
+    li += "            <div class=\"col col-2\" data-label=\"Vencimento\"> " + listaTransacoes[i].dataVencimento + "<\/div>";
+    li += "            <div class=\"col col-3\" data-label=\"Status\">" + listaTransacoes[i].status + "<\/div>";
+    li += "            <div class=\"col col-4\" data-label=\" Valor \">";
+    li += "              " + listaTransacoes[i].valor;
+    li += "            <\/div>";
+    li += "          <\/li>";
 
-li.replaceAll("varVencimento", )
-li.replaceAll("varStatus", listaTransacoes[i].status)
-li.replaceAll("varValor", listaTransacoes[i].valor)
-li.replaceAll("varID", listaTransacoes[i].id)
+    li.replaceAll("varVencimento",)
+    li.replaceAll("varStatus", listaTransacoes[i].status)
+    li.replaceAll("varValor", listaTransacoes[i].valor)
+    li.replaceAll("varID", listaTransacoes[i].id)
 
-return li
+    return li
 }
 
-/*function select(id) {
-  var input = document.querySelectorAll('#'+id+' input');
-  if (input[0].checked) {
-    input[0].checked = false;
-  } else {
-    input[0].checked = true;
-  }
-} */
-
+var selected = [];
 
 function voltar() {
     $(".detalhes").css("display", "none")
@@ -199,34 +175,31 @@ function voltar() {
     selected = []
 }
 
-
-var selected = [];
-
 function select(data) {
     if (!selected.includes(data)) {
         selected.push(data)
-        $("#check_"+data).prop( "checked", true );
+        $("#check_" + data).prop("checked", true);
     } else {
         selected.splice(selected.indexOf(data), 1)
-        $("#check_"+data).prop( "checked", false );
+        $("#check_" + data).prop("checked", false);
     }
     console.log(selected)
 }
 
 function sendWpp() {
 
-    $('input').each(function() {
+    $('input').each(function () {
         this.checked = false;
     });
 
     var data = {
-        "number": "55"+number,
+        "number": "55" + number,
         "name": cliente.split(" ")[0],
         "data": []
     }
     var boletos = []
     console.log(listaTransacoes)
-    for (var i = 0; i < listaTransacoes.length; i++){
+    for (var i = 0; i < listaTransacoes.length; i++) {
         if (selected.includes(listaTransacoes[i].id)) {
             boletos.push({
                 "pdf": listaTransacoes[i].pdf,
@@ -234,16 +207,16 @@ function sendWpp() {
             })
         }
     };
-        
+
     data.data = boletos
-    
+
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function logger() {
-      if (this.readyState === 4 && this.status === 200) {
-        alert(JSON.parse(xhttp.responseText).message)
-      }
+        if (this.readyState === 4 && this.status === 200) {
+            alert(JSON.parse(xhttp.responseText).message)
+        }
     }
-    xhttp.open("POST", httpUrl+"api/sendWpp", true);
+    xhttp.open("POST", httpUrl + "api/sendWpp", true);
     console.log(JSON.stringify(data))
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify(data));

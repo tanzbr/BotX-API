@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cors());
 
 app.listen(HTTP_PORT, () => {
-    console.log("Servidor rodando na porta " + HTTP_PORT);
+    console.log("Servidor rodando na porta: " + HTTP_PORT);
 });
 
 app.get("", function (req, res) {
@@ -94,7 +94,7 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
         const xhttp2 = new XMLHttpRequest();
         var id = req.params.id;
         var idCliente;
-
+        
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function logger() {
             if (this.readyState === 4 && this.status === 200) {
@@ -112,7 +112,6 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
 
                 xhttp2.onreadystatechange = function logger() {
                     if (this.readyState === 4 && this.status === 200) {
-                        console.log("id2:" + idCliente);
 
                         var dados = JSON.parse(this.responseText).data;
 
