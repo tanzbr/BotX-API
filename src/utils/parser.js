@@ -66,10 +66,6 @@ const parseAsaasTransactions = function (data) {
     }
 
     if (transacoes == []) {
-        res.json({
-            message: "error",
-            info: "No transactions found.",
-        });
         return "no transactions";
     }
 

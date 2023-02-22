@@ -13,7 +13,10 @@ $("#cpfcnpj").inputmask({
     keepStatic: true
 });
 
-$("#telefone").inputmask({mask: ['+55 (99) 9999-9999', '+55 (99) 9 9999-9999'], greedy: false});
+$("#telefone").inputmask({
+    mask: ['+55 (99) 9999-9999', '+55 (99) 9 9999-9999'], 
+    greedy: false
+});
 
 function btnSubmit() {
     var id = inputId.value
@@ -74,7 +77,6 @@ function carregarLista(id) {
                 }
                 return;
             }
-
 
         }
     };

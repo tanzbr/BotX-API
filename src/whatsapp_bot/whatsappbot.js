@@ -1,37 +1,65 @@
-const qrcode = require('qrcode-terminal');
-const { Client, LocalAuth } = require('whatsapp-web.js');
-var qrcodeWpp;
+const qrcodeTerminal = require('qrcode-terminal');
+const qrcode = require('qrcode');
+const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+var qrcodeWpp = null;
 var ready = false;
-var qrcode2 = require('qrcode')
+var statusLogs = ["Iniciando..."];
 
 const client = new Client({
+    restartOnAuthFail: true,
+    puppeteer: {
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process', // <- this one doesn't works in Windows
+        '--disable-gpu'
+      ],
+    },
     authStrategy: new LocalAuth()
-});
+  });
 
-client.on('qr', qr => {
+client.on('qr', async qr => {
     console.log("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")
-    qrcode.generate(qr, {small: true})
+    if (!(statusLogs[statusLogs.length - 1] == "Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")) {
+        statusLogs.push("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.");
+    }
+    qrcodeTerminal.generate(qr, {small: true})
 
-    qrcodeWpp = qrcode2.toDataURL(qr, function (err, url) {
-    console.log(url)
-    })
-    console.log(qrcodeWpp) // FALTA PASSAR PARA PAGINA WEB
+    qrcodeWpp = await qrcode.toDataURL(qr)
 });
  
 client.on('authenticated', () => {
     console.log('Autenticado!');
+    statusLogs.push("Autenticado");
     //sendMsg(data)
 });
 
 client.on('ready', () => {
     console.log('Bot pronto!');
     ready = true;
+    qrcodeWpp = null;
+    statusLogs.push("Bot iniciado e online!")
     //sendMsg(data)
 });
 
-client.initialize();
+client.on('auth_failure', () => {
+    ready = false;
+    statusLogs.push("Falha na autenticação, tentando novamente...")
+});
 
-const { MessageMedia } = require('whatsapp-web.js');
+client.on('disconnected', (reason) => {
+    ready = false;
+    statusLogs.push("O BOT foi desconectado (Motivo: " +reason+ "). Reiniciando...")
+    client.destroy();
+    client.initialize();
+});
+
+client.initialize();
 
 const sendMsg = async function(data) {
 
@@ -76,8 +104,16 @@ const sendMsg = async function(data) {
    
 }
 
+var status = function() {
+    return JSON.parse(`{
+        "ready": "${ready}",
+        "qrcode": "${qrcodeWpp}",
+        "logs": "${statusLogs}"
+    }`)
+}
+
 module.exports = { 
     sendMsg,
-    qrcodeWpp
+    status
 }
 

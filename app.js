@@ -29,13 +29,15 @@ app.get("", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/pages/index.html"));
 });
 
-app.get("/qrcode", function (req, res) {
-    res.send(`<img src="${bot.qrcodeWpp}"></img>`);
-    //res.sendFile(path.join(__dirname, '/index.html'))
+app.get("/admin", function (req, res) {
+    res.sendFile(path.join(__dirname, '/src/pages/admin.html'))
 });
 
 app.get("/index/style.css", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/style/style.css"));
+});
+app.get("/admin/admin.css", function (req, res) {
+    res.sendFile(path.join(__dirname, "/src/style/admin.css"));
 });
 
 app.get("/RecoletaAlt-SemiBold.ttf", function (req, res) {
@@ -60,6 +62,13 @@ app.get("/jquery.mask.js", function (req, res) {
 
 app.get("/index/index.js", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/pages/index.js"));
+});
+app.get("/admin/admin.js", function (req, res) {
+    res.sendFile(path.join(__dirname, "/src/pages/admin.js"));
+});
+
+app.get("/api/statusWpp", function (req, res) {
+    res.json(bot.status())
 });
 
 app.post("/api/sendWpp", async function (req, res) {
