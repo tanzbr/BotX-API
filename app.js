@@ -6,6 +6,7 @@ var XMLHttpRequest = require("xhr2");
 var bot = require("./src/whatsapp_bot/whatsappbot.js");
 var app = express();
 const config = require("./config");
+const parser = require("./src/utils/parser.js")
 
 // CONFIG FILE
 const HTTP_PORT = config.app.port;
@@ -94,90 +95,40 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
         const xhttp2 = new XMLHttpRequest();
         var id = req.params.id;
         var idCliente;
-        
+
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function logger() {
             if (this.readyState === 4 && this.status === 200) {
-                var dadosCliente = JSON.parse(this.responseText);
-
-                if (dadosCliente.data[0] == null) {
+                if (parser.parseAsaasClient(this.responseText) == null) {
                     res.json({
                         message: "error",
                         info: "User not found.",
                     });
                     return;
                 }
-                idCliente = dadosCliente.data[0].id;
-                nomeCliente = dadosCliente.data[0].name;
+                var dataClient = parser.parseAsaasClient(this.responseText);
+                idCliente = dataClient.idCliente;
+                nomeCliente = dataClient.nomeCliente;
 
                 xhttp2.onreadystatechange = function logger() {
                     if (this.readyState === 4 && this.status === 200) {
 
-                        var dados = JSON.parse(this.responseText).data;
-
-                        if (dados[0] == null) {
+                        var parsed = parser.parseAsaasTransactions(this.responseText)
+                        if (parsed == null) {
                             res.json({
                                 message: "error",
                                 info: "No transactions found.",
                             });
                             return;
                         }
-
-                        var transacoes = [];
-
-                        for (var i = 0; i < dados.length; i++) {
-                            var id = dados[i].id;
-                            var dataCriada = dados[i].dateCreated;
-                            var valor = dados[i].value;
-                            var tipo = dados[i].billingType;
-                            var status = dados[i].status;
-                            var dataVencimento = formatDate(dados[i].dueDate);
-                            var pdf = dados[i].bankSlipUrl;
-
-                            valor = valor.toLocaleString("pt-BR", {
-                                style: "currency",
-                                currency: "BRL",
-                            });
-
-                            if (status == "PENDING") {
-                                status = "À VENCER";
-                            }
-                            if (
-                                status == "RECEIVED" ||
-                                status == "CONFIRMED" ||
-                                status == "RECEIVED_IN_CASH"
-                            ) {
-                                status = "PAGO";
-                                continue;
-                            }
-                            if (status == "OVERDUE") {
-                                status = "VENCIDO";
-                            }
-                            if (status == "REFUNDED") {
-                                status = "ESTORNADO";
-                                continue;
-                            }
-
-                            var datajson = JSON.parse(`{
-                        "id": "${id}",
-                        "cliente": "${nomeCliente}",
-                        "dataCriada": "${dataCriada}",
-                        "valor": "${valor}",
-                        "tipo": "${tipo}",
-                        "status": "${status}",
-                        "dataVencimento": "${dataVencimento}",
-                        "pdf": "${pdf}"
-                    }`);
-                            transacoes.push(datajson);
-                        }
-                        if (transacoes == []) {
+                        if (parsed == "no transactions") {
                             res.json({
                                 message: "error",
                                 info: "No transactions found.",
                             });
                             return;
                         }
-                        res.json(transacoes.reverse());
+                        res.json(parsed);
                     }
                 };
                 xhttp2.open(
@@ -201,13 +152,4 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
     // SOON: OTHERS API
 });
 
-function formatDate(date) {
-    var arrayData = date.split("-");
-    arrayData.reverse();
-    var vencimento = "";
-    for (var i = 0; i < 3; i++) {
-        vencimento += arrayData[i] + "/";
-    }
-    vencimento = vencimento.substring(0, vencimento.length - 1);
-    return vencimento;
-}
+

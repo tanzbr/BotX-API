@@ -1,7 +1,7 @@
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 var qrcodeWpp;
-
+var ready = false;
 var qrcode2 = require('qrcode')
 
 const client = new Client({
@@ -25,6 +25,7 @@ client.on('authenticated', () => {
 
 client.on('ready', () => {
     console.log('Bot pronto!');
+    ready = true;
     //sendMsg(data)
 });
 
@@ -33,6 +34,12 @@ client.initialize();
 const { MessageMedia } = require('whatsapp-web.js');
 
 const sendMsg = async function(data) {
+
+    if (!ready) {
+        console.log("Uma requisição foi feita mas o BOT de WhatsApp ainda não foi iniciado e/ou vinculado.")
+        return "Por favor, aguarde alguns minutos e tente novamente. Se o problema persistir, entre em contato."
+    }
+
     const nome = data.name;
     var id = await client.getNumberId(data.number)
     const boletos = data.data;
