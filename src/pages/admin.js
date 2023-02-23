@@ -1,4 +1,6 @@
-var url = "http://localhost:8080/api/"
+var url = "http://10.20.20.70:8080/api/"
+var token;
+const inputToken = document.getElementById('token')
 
 window.onload = () => {
     carregarWhatsApp()
@@ -8,9 +10,46 @@ window.setInterval(function(){
    carregarWhatsApp();
 }, 3000);
 
+async function btnSubmit() {
+    var valid;
+    if (inputToken.value == "") {
+        alert("Por favor, digite um token de acesso.")
+    }
+    await fetch(url+"validar", {
+        headers: {
+            'access_token': inputToken.value
+          },
+    })
+    .then(data => {
+        if (data.status == 200) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+    })
+    .catch(error => {
+        alert("Não foi possível conectar ao servidor.")
+        return;
+    });
+    if (!valid){
+        alert("Token de acesso negado. Por favor, tente novamente.")
+        return
+    }
+    $(".login-form").hide()
+    $(".whatsapp").show()
+    token = inputToken.value
+    carregarWhatsApp();
+}
+
 async function carregarWhatsApp() {
 
-    var dados = await fetch(url+"statusWpp")
+    if (token == null) {return}
+
+    var dados = await fetch(url+"statusWpp", {
+        headers: {
+            'access_token': token
+          },
+    })
     .then(data => {
         return data.json();
     })
@@ -54,5 +93,8 @@ function desconectar() {
     fetch(url+"disconnectWpp",
     {
         method: "POST",
+        headers: {
+            'access_token': token
+          },
     })
 }

@@ -17,11 +17,76 @@ header {
   align-items: center;
   justify-content: center;
 }
+header h1 {
+  text-align: center;
+}
 
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.login-form button {
+  border: none;
+  background: #0140EA;
+  color: white;
+  padding: 1rem;
+  border-radius: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  height: 55px;
+  cursor: pointer;
+}
+
+.login-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.form-item label:not(.checkboxLabel) {
+  display: inline-block;
+  background-color: white;
+  margin-bottom: 10px;
+  position: absolute;
+  padding: 0 10px;
+  transform: translate(30px, -10px);
+  font-size: 14px;
+}
+
+input[type=text] {
+  border: 1px solid black;
+  height: 55px;
+  padding: 0 2rem;
+  width: 100%;
+  transition: background 0.5s;
+  font-size: 18px;
+  outline: none;
+  border-radius: 100px;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding-top: 30px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 26px !important;
+  }
+  .login-form {
+    flex-direction: column;
+  }
+  #btnConsultar {
+    margin-top: 15px;
+  }
+}
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .details-modal {

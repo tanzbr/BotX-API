@@ -11,6 +11,7 @@ const parser = require("./src/utils/parser.js")
 // CONFIG FILE
 const HTTP_PORT = config.app.port;
 const usingAPI = config.app.using_api;
+var admin_credential = config.app.admin_credential;
 var apiToken;
 
 if (usingAPI == "asaas") {
@@ -68,14 +69,43 @@ app.get("/admin/admin.js", function (req, res) {
 });
 
 app.get("/api/statusWpp", function (req, res) {
-    res.json(bot.status())
+    if (req.headers.access_token == admin_credential) {
+        res.json(bot.status())
+    } else {
+        res.status(401).json({
+            message:"Consulta não autorizada."
+        })
+    }
+    
+});
+
+app.get("/api/validar", function (req, res) {
+    if (req.headers.access_token == admin_credential) {
+        res.status(200).json({
+            message:"ok"
+        })
+    } else {
+        res.status(401).json({
+            message:"Consulta não autorizada."
+        })
+    }
+    
 });
 
 app.post("/api/disconnectWpp", async function (req, res) {
-    bot.desconectar();
-    res.json({
-        status:"ok"
-    })
+
+    if (req.headers.access_token == admin_credential) {
+        bot.desconectar();
+        res.json({
+            message:"ok"
+        })
+    } else {
+        res.status(401).json({
+            message:"Consulta não autorizada."
+        })
+    }
+
+    
 });
 
 app.post("/api/sendWpp", async function (req, res) {
