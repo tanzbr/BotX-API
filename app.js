@@ -7,6 +7,9 @@ var bot = require("./src/whatsapp_bot/whatsappbot.js");
 var app = express();
 const config = require("./config");
 const parser = require("./src/utils/parser.js")
+const fs = require("fs");
+
+const https = require("https");
 
 // CONFIG FILE
 const HTTP_PORT = config.app.port;
@@ -22,9 +25,20 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
+https
+  .createServer({
+    key: fs.readFileSync("/usr/ssl/cert.key"),
+    cert: fs.readFileSync("/usr/ssl/cert.crt"),
+    
+  },
+  app)
+  .listen(HTTP_PORT, ()=>{
+    console.log("Servidor rodando na porta: " + HTTP_PORT)
+  });
+/*
 app.listen(HTTP_PORT, () => {
     console.log("Servidor rodando na porta: " + HTTP_PORT);
-});
+});*/
 
 app.get("", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/pages/index.html"));
