@@ -71,6 +71,13 @@ app.get("/api/statusWpp", function (req, res) {
     res.json(bot.status())
 });
 
+app.post("/api/disconnectWpp", async function (req, res) {
+    bot.desconectar();
+    res.json({
+        status:"ok"
+    })
+});
+
 app.post("/api/sendWpp", async function (req, res) {
     console.log(req.body);
     var status = await bot.sendMsg(req.body);

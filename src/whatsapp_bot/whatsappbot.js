@@ -112,8 +112,20 @@ var status = function() {
     }`)
 }
 
+var desconectar = function() {
+    if (ready) {
+        try {
+            client.logout()
+        } catch(e) {
+            console.log(e)
+        }
+        client.initialize()
+    }
+}
+
 module.exports = { 
     sendMsg,
-    status
+    status,
+    desconectar
 }
 

@@ -18,11 +18,185 @@ header {
     justify-content: center;
 }
 
+
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.details-modal {
+    background: #ffffff;
+    border-radius: 0.5em;
+    box-shadow: 0 10px 20px rgba(black, 0.2);
+    left: 50%;
+    max-width: 90%;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30em;
+    text-align: left;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-modal-fechar {
+    align-items: center;
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+    margin-bottom: 20px;
+
+    button {
+        cursor: pointer !important;
+    }
+
+    svg {
+      display: block;
+    }
+  }
+
+  // -------------- TITLE
+
+  
+
+  .details-modal-title {
+    color: #111827;
+    padding: 1.5em 2em;
+    pointer-events: all;
+    position: relative;
+    width: 100%;
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: normal;
+      text-align: center;
+    }
+  }
+
+  // -------------- CONTENT
+
+  .details-modal-content {
+    border-top: 1px solid #e0e0e0;
+    padding: 2em;
+    pointer-events: all;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    P {
+        text-align: center;
+    }
+
+  }
+
+// -------------- OVERLAY
+
+.details-modal-overlay {
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  background: rgba(#0f172a, 0.8);
+  position: fixed;
+  opacity: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  details[open] & {
+    pointer-events: all;
+    opacity: 0.5;
+  }
+}
+
+// -------------- DETAILS
+
+ 
+
+details {
+    width: 100%;
+  summary {
+    margin: 5px;
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      
+    &:focus {
+      outline: none;
+    }
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+}
+
+button {
+    margin: 5px;
+}
+
+.button-26 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    appearance: button;
+    background-color: #1652F0;
+    border: 1px solid #1652F0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-size: 14px;
+    line-height: 1.15;
+    overflow: visible;
+    padding: 12px 16px;
+    // position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: all 80ms ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+    path {
+        fill: white;
+    }
+
+  }
+  
+  .button-26:disabled {
+    opacity: .5;
+  }
+  
+  .button-26:focus {
+    outline: 0;
+  }
+  
+  .button-26:hover {
+    background-color: #0A46E4;
+    border-color: #0A46E4;
+  }
+  
+  .button-26:active {
+    background-color: #0039D7;
+    border-color: #0039D7;
+  }
 
 .whatsapp {
     margin-top: 30px;
@@ -34,22 +208,57 @@ header {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     max-width: 500px;
-    width: 300px;
+    width: 350px;
 
     .buttons {
-        display: block;
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         margin: 15px;
         box-sizing: border-box;
         width: 100%;
 
+        .button-summary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            appearance: none;
+            background: #16a34a;
+            border-radius: 0.25em;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            height: 3em;
+            line-height: 3em;
+            padding: 0 1em;
+          
+            &:hover {
+              background-color: lighten(#16a34a, 2%);
+            }
+          }
+          
+
         button {
             margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45%;
         }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        path {
+            fill: white;
+        }
+
     }
 
-    #button-reload {
+    /*#btnReload {
         svg {
             width: 25px;
             height: 25px;
@@ -58,49 +267,7 @@ header {
             fill: white;
         }
         padding: 5px;
-    }
-
-    .button-26 {
-        appearance: button;
-        background-color: #1652F0;
-        border: 1px solid #1652F0;
-        border-radius: 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-        font-size: 14px;
-        line-height: 1.15;
-        overflow: visible;
-        padding: 12px 16px;
-        position: relative;
-        text-align: center;
-        text-transform: none;
-        transition: all 80ms ease-in-out;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        width: fit-content;
-      }
-      
-      .button-26:disabled {
-        opacity: .5;
-      }
-      
-      .button-26:focus {
-        outline: 0;
-      }
-      
-      .button-26:hover {
-        background-color: #0A46E4;
-        border-color: #0A46E4;
-      }
-      
-      .button-26:active {
-        background-color: #0039D7;
-        border-color: #0039D7;
-      }
-
+    }*/
     .whatsapp-status {
         font-size: 13px;
         margin-bottom: 20px;
@@ -137,7 +304,7 @@ header {
         }
         #statusPath {
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-            fill: #de3b3b;
+            fill: #de3b3b; 
         }
         
         h2 {
@@ -159,4 +326,8 @@ header {
         flex-direction: column;
     }
 
+}
+
+#readyStatus {
+    text-align: center;
 }
