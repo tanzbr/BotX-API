@@ -4,7 +4,7 @@ const regexCpf = new RegExp('([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]
 const regexTelefone = new RegExp('^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$', '')
 
 var listaTransacoes;
-var httpUrl = "http://localhost:8080/"//"http://149.56.85.70:8080/"
+var httpUrl = "https://149.56.85.70:3000/"
 var cliente;
 var number;
 

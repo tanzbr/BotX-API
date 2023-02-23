@@ -1,4 +1,4 @@
-var url = "http://10.20.20.70:8080/api/"
+var url = "https://149.56.85.70:3000/"
 var token;
 const inputToken = document.getElementById('token')
 

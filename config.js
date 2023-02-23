@@ -1,6 +1,6 @@
 const config = {
   app: {
-    port: 8080,
+    port: 3000,
     // API SENDO USADA ATUALMENTE (DISPONIVEIS: asaas)
     using_api: "asaas",
     admin_credential: "12345"
