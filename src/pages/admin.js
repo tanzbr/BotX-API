@@ -1,4 +1,4 @@
-var url = "https://149.56.85.70:3000/"
+var url = "https://54.160.92.23:3000/"
 var token;
 const inputToken = document.getElementById('token')
 

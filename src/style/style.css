@@ -24,7 +24,6 @@ body {
 }
 .container-login #telefone {
   padding-left: 38px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="55"><text x="10" y="31" style="font: 14px Arial;">+55</text></svg>') no-repeat !important;
 }
 .container-login .login-left {
   display: flex;
