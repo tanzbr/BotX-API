@@ -1,5 +1,6 @@
 const inputToken = document.getElementById('token')
 var token;
+var qr;
 var url = "http://localhost:3000/api/";
 
 function fecharMenu() {
@@ -118,11 +119,19 @@ async function carregarWhatsApp() {
         $(".statusPath").css("fill", "#3ede3b") 
     }
 
+    if (dados.number != "null") {
+        $("#numberConnected").text(dados.number)
+    } else {
+        $("#numberConnected").text("Nenhum")
+    }
+
     if (dados.qrcode != "null") {
-        $(".qrcode").show();
+        qr = true;
+        $("#qrcode").show();
         $("#qrcode").attr("src", dados.qrcode)
     } else {
-        $(".qrcode").hide();
+        qr = false;
+        $("#qrcode").hide();
     }
 
     // TO DO LOGS
@@ -135,11 +144,12 @@ async function carregarWhatsApp() {
 }
 
 function conectarWpp() {
-    if (!($(".qrcode").is(":visible"))) {
+    if (qr) {
+        $("#popQrcode").show();
+    } else {
         alert("Não há nenhum qr code pendente para ser escaneado. Se estiver offline, aguarde um pouco e tente novamente.")
         return;
     }
-    $("#popQrcode").show();
 }
 
 function fecharPopQr() {

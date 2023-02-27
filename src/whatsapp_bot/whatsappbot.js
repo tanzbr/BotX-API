@@ -3,6 +3,7 @@ const qrcode = require('qrcode');
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 var qrcodeWpp = null;
 var ready = false;
+var numberConnected = null;
 var statusLogs = ["Iniciando..."];
 
 const client = new Client({
@@ -36,6 +37,7 @@ client.on('qr', async qr => {
 client.on('authenticated', () => {
     console.log('Autenticado!');
     statusLogs.push("Autenticado");
+    
     //sendMsg(data)
 });
 
@@ -43,6 +45,7 @@ client.on('ready', () => {
     console.log('Bot pronto!');
     ready = true;
     qrcodeWpp = null;
+    numberConnected = client.info.wid.user
     statusLogs.push("Bot iniciado e online!")
     //sendMsg(data)
 });
@@ -108,6 +111,7 @@ var status = function() {
     return JSON.parse(`{
         "ready": "${ready}",
         "qrcode": "${qrcodeWpp}",
+        "number": "${numberConnected}",
         "logs": "${statusLogs}"
     }`)
 }
