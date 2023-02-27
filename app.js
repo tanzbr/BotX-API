@@ -14,6 +14,9 @@ const https = require("https");
 // CONFIG FILE
 const HTTP_PORT = config.app.port;
 const usingAPI = config.app.using_api;
+const mode = config.app.mode;
+const pathToKey = config.app.pathToKey;
+const pathToCert = config.app.pathToCert;
 var admin_credential = config.app.admin_credential;
 var apiToken;
 
@@ -25,16 +28,20 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
-https
-  .createServer({
-    key: fs.readFileSync("/usr/ssl/cert.key"),
-    cert: fs.readFileSync("/usr/ssl/cert.crt"),
-    
+if (mode == "http") {
+    app.listen(HTTP_PORT, () => {console.log("Servidor rodando na porta: " + HTTP_PORT)})
+} else {
+https.createServer({
+    key: fs.readFileSync(pathToKey),
+    cert: fs.readFileSync(pathToCert),
   },
   app)
   .listen(HTTP_PORT, ()=>{
     console.log("Servidor rodando na porta: " + HTTP_PORT)
   });
+}
+
+
 /*
 app.listen(HTTP_PORT, () => {
     console.log("Servidor rodando na porta: " + HTTP_PORT);
@@ -52,7 +59,7 @@ app.get("/index/style.css", function (req, res) {
     res.sendFile(path.join(__dirname, "/src/style/style.css"));
 });
 app.get("/admin/admin.css", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/style/admin.css"));
+    res.sendFile(path.join(__dirname, "/src/style/adminTail.css"));
 });
 
 app.get("/RecoletaAlt-SemiBold.ttf", function (req, res) {
@@ -63,6 +70,10 @@ app.get("/RecoletaAlt-SemiBold.ttf", function (req, res) {
 
 app.get("/logo.svg", function (req, res) {
     res.sendFile(path.join(__dirname, "/resources/img/logo.svg"));
+});
+
+app.get("/logobotx.jpg", function (req, res) {
+    res.sendFile(path.join(__dirname, "/resources/img/logobotx.jpg"));
 });
 
 app.get("/image.svg", function (req, res) {

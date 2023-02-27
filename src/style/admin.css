@@ -1,362 +1,63 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
-  background-color: #F7F7F7;
-  font-family: "Poppins", sans-serif;
+  background-color: #f7f7f7;
 }
 
-header {
-  padding-top: 10px;
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-}
-header h1 {
-  text-align: center;
+main {
+  background-color: #f7f7f7;
 }
 
-.login-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-}
-.login-form button {
-  border: none;
-  background: #0140EA;
-  color: white;
-  padding: 1rem;
-  border-radius: 100px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 18px;
-  height: 55px;
-  cursor: pointer;
+.margin15 {
+  margin-top: 15px !important;
 }
 
-.login-form-content {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-}
-
-.form-item label:not(.checkboxLabel) {
-  display: inline-block;
-  background-color: white;
-  margin-bottom: 10px;
-  position: absolute;
-  padding: 0 10px;
-  transform: translate(30px, -10px);
-  font-size: 14px;
-}
-
-input[type=text] {
-  border: 1px solid black;
-  height: 55px;
-  padding: 0 2rem;
-  width: 100%;
-  transition: background 0.5s;
-  font-size: 18px;
-  outline: none;
-  border-radius: 100px;
-}
-
-@media (max-width: 768px) {
-  header {
-    padding-top: 30px;
-  }
-  h1 {
-    text-align: center;
-    font-size: 26px !important;
-  }
-  .login-form {
-    flex-direction: column;
-  }
-  #btnConsultar {
-    margin-top: 15px;
-  }
-}
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.details-modal {
-  background: #ffffff;
-  border-radius: 0.5em;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  left: 50%;
-  max-width: 90%;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 30em;
-  text-align: left;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.details-modal-fechar {
-  align-items: center;
-  color: #111827;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.details-modal-fechar button {
-  cursor: pointer !important;
-}
-.details-modal-fechar svg {
-  display: block;
-}
-
-.details-modal-title {
-  color: #111827;
-  padding: 1.5em 2em;
-  pointer-events: all;
-  position: relative;
-  width: 100%;
-}
-.details-modal-title h1 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: normal;
-  text-align: center;
-}
-
-.details-modal-content {
-  border-top: 1px solid #e0e0e0;
-  padding: 2em;
-  pointer-events: all;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.details-modal-content P {
-  text-align: center;
-}
-
-.details-modal-overlay {
-  transition: opacity 0.2s ease-out;
-  pointer-events: none;
-  background: rgba(15, 23, 42, 0.8);
-  position: fixed;
-  opacity: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  top: 0;
-}
-details[open] .details-modal-overlay {
-  pointer-events: all;
-  opacity: 0.5;
-}
-
-details {
-  width: 100%;
-}
-details summary {
-  margin: 5px;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-details summary:focus {
-  outline: none;
-}
-details summary::-webkit-details-marker {
-  display: none;
-}
-
-button {
-  margin: 5px;
-}
-
-.button-26 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-appearance: button;
-     -moz-appearance: button;
-          appearance: button;
-  background-color: #1652F0;
-  border: 1px solid #1652F0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  font-family: Graphik, -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  line-height: 1.15;
-  overflow: visible;
-  padding: 12px 16px;
-  text-align: center;
-  text-transform: none;
-  transition: all 80ms ease-in-out;
-  -moz-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.button-26 svg {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-.button-26 path {
-  fill: white;
-}
-
-.button-26:disabled {
-  opacity: 0.5;
-}
-
-.button-26:focus {
-  outline: 0;
-}
-
-.button-26:hover {
-  background-color: #0A46E4;
-  border-color: #0A46E4;
-}
-
-.button-26:active {
-  background-color: #0039D7;
-  border-color: #0039D7;
-}
-
-.whatsapp {
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  max-width: 500px;
-  width: 350px;
-  /*#btnReload {
-      svg {
-          width: 25px;
-          height: 25px;
-      }
-      path {
-          fill: white;
-      }
-      padding: 5px;
-  }*/
-}
-.whatsapp .buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 15px;
-  box-sizing: border-box;
-  width: 100%;
-}
-.whatsapp .buttons .button-summary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background: #16a34a;
-  border-radius: 0.25em;
-  color: white;
-  cursor: pointer;
-  font-weight: 500;
-  height: 3em;
-  line-height: 3em;
-  padding: 0 1em;
-}
-.whatsapp .buttons .button-summary:hover {
-  background-color: #17ac4e;
-}
-.whatsapp .buttons button {
-  margin: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45%;
-}
-.whatsapp .buttons svg {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-}
-.whatsapp .buttons path {
-  fill: white;
-}
-.whatsapp .whatsapp-status {
-  font-size: 13px;
-  margin-bottom: 20px;
-}
-.whatsapp .whatsapp-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.whatsapp .whatsapp-title svg {
-  margin-right: 5px;
+.statusSVG {
   width: 25px;
   height: 25px;
+  margin-right: 8px;
 }
-.whatsapp .whatsapp-header {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 10px;
-  width: 100%;
-  margin-bottom: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 1px solid rgba(153, 153, 153, 0.1725490196);
-}
-.whatsapp .whatsapp-header #statusSVG {
-  width: 20px;
-  height: 20px;
-}
-.whatsapp .whatsapp-header #statusPath {
+
+.statusPath {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   fill: #de3b3b;
 }
-.whatsapp .whatsapp-header h2 {
-  font-size: 22px;
+
+.div-logs {
+  padding: 30px;
 }
-.whatsapp .ready {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.whatsapp .log-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.div-logs h3 {
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
-#readyStatus {
-  text-align: center;
+a {
+  cursor: pointer;
+}
+
+.div-container-inicio {
+  margin-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2196078431);
+  border-radius: 10px;
+}
+.div-container-inicio h1 {
+  font-size: 24px;
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+#mostrarMenosLogs {
+  margin-top: 5px;
+  font-size: 12px;
+  text-decoration: underline;
+  color: rgb(99, 102, 241);
+}
+#mostrarMenosLogs:hover {
+  transition: 0.1s;
+  color: rgb(107, 109, 239);
+  cursor: pointer;
 }/*# sourceMappingURL=admin.css.map */

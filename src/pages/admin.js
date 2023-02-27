@@ -1,6 +1,56 @@
-var url = "https://54.160.92.23:3000/"
-var token;
 const inputToken = document.getElementById('token')
+var token;
+var url = "http://localhost:3000/api/";
+
+function fecharMenu() {
+    $("#mobileMenu").hide();
+}
+
+function abrirMenu() {
+    $("#mobileMenu").show();
+}
+
+function menuWhatsapp() {
+    if (token == null) {
+        return
+    }
+    $(".containers").hide();
+    $("#container-whatsapp").show();
+    $("a, .bg-gray-100").removeClass("bg-gray-100")
+    $("#btnMenuWhatsapp").addClass("bg-gray-100")
+}
+
+function menuInicio() {
+    if (token == null) {
+        return
+    }
+    $(".containers").hide();
+    $("#container-inicio").show();
+    $("a, .bg-gray-100").removeClass("bg-gray-100")
+    $("#btnMenuInicio").addClass("bg-gray-100")
+}
+
+function menuRelatorios() {
+    if (token == null) {
+        return
+    }
+    $(".containers").hide();
+    $("#container-relatorios").show();
+    $("a, .bg-gray-100").removeClass("bg-gray-100")
+    $("#btnMenuRelatorios").addClass("bg-gray-100")
+}
+
+function fecharPopQr() {
+
+}
+
+function mostrarLogs() {
+    if ($(".div-logs").is(":visible")) {
+        $(".div-logs").hide();
+        return
+    }
+    $(".div-logs").show();
+}
 
 window.onload = () => {
     carregarWhatsApp()
@@ -14,6 +64,7 @@ async function btnSubmit() {
     var valid;
     if (inputToken.value == "") {
         alert("Por favor, digite um token de acesso.")
+        return
     }
     await fetch(url+"validar", {
         headers: {
@@ -35,11 +86,12 @@ async function btnSubmit() {
         alert("Token de acesso negado. Por favor, tente novamente.")
         return
     }
-    $(".login-form").hide()
-    $(".whatsapp").show()
+    $(".div-login").hide()
+    $("#container-inicio").show()
     token = inputToken.value
     carregarWhatsApp();
 }
+
 
 async function carregarWhatsApp() {
 
@@ -54,32 +106,26 @@ async function carregarWhatsApp() {
         return data.json();
     })
     .catch(error => {
-        $("#readyStatus").text("Não foi possível conectar ao servidor. Tente novamente mais tarde ou procure ajuda do Suporte.")
-        $("#summary-conectar").hide();
-        $("#btnDisconnect").hide()
+        alert("Não foi possível conectar ao servidor. Tente novamente mais tarde ou procure ajuda do Suporte.")
         return;
     });
 
     if (dados.ready == "false") {
-        $("#statusPath").css("fill", "#de3b3b")
-        $("#readyStatus").text("WhatsApp não conectado")
-        $("#btnDisconnect").hide()
+        $(".statusPath").css("fill", "#de3b3b")
+        $(".readyStatus").text("Offline")
     } else {
-        $("#readyStatus").text("WhatsApp conectado!")
-        $("#statusPath").css("fill", "#3ede3b") 
-        $("#btnDisconnect").show()
+        $(".readyStatus").text("Online")
+        $(".statusPath").css("fill", "#3ede3b") 
     }
 
     if (dados.qrcode != "null") {
-        $("#summary-conectar").show();
         $(".qrcode").show();
         $("#qrcode").attr("src", dados.qrcode)
     } else {
-        $(".detailsConectar").removeAttr("open")
-        $("#summary-conectar").hide();
         $(".qrcode").hide();
     }
 
+    // TO DO LOGS
     var logs = dados.logs.split(",")
     $('.log-section').text("")
     for (var i = 0; i < logs.length; i++) {
@@ -88,13 +134,14 @@ async function carregarWhatsApp() {
 
 }
 
-function desconectar() {
-    console.log("Desconectando...")
-    fetch(url+"disconnectWpp",
-    {
-        method: "POST",
-        headers: {
-            'access_token': token
-          },
-    })
+function conectarWpp() {
+    if (!($(".qrcode").is(":visible"))) {
+        alert("Não há nenhum qr code pendente para ser escaneado. Se estiver offline, aguarde um pouco e tente novamente.")
+        return;
+    }
+    $("#popQrcode").show();
+}
+
+function fecharPopQr() {
+    $("#popQrcode").hide();
 }
