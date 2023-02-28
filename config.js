@@ -1,6 +1,8 @@
 const config = {
   app: {
     port: 3000,
+    // URL EM QUE AS REQUISIÇÕES SERÃO FEITAS (IP/DOMINIO DA MAQUINA DO SERVIDOR)
+    host: "http://10.20.20.70",
     // HTTPS OR HTTP
     mode: "http",
     // CAMINHO PARA O SSL .KEY

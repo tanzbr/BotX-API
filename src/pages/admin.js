@@ -1,7 +1,7 @@
 const inputToken = document.getElementById('token')
 var token;
 var qr;
-var url = "http://localhost:3000/api/";
+var url = "http://10.20.20.70:3000/api/";
 
 function fecharMenu() {
     $("#mobileMenu").hide();
@@ -16,6 +16,7 @@ function menuWhatsapp() {
         return
     }
     $(".containers").hide();
+    $("#mobileMenu").hide();
     $("#container-whatsapp").show();
     $("a, .bg-gray-100").removeClass("bg-gray-100")
     $("#btnMenuWhatsapp").addClass("bg-gray-100")
@@ -26,6 +27,7 @@ function menuInicio() {
         return
     }
     $(".containers").hide();
+    $("#mobileMenu").hide();
     $("#container-inicio").show();
     $("a, .bg-gray-100").removeClass("bg-gray-100")
     $("#btnMenuInicio").addClass("bg-gray-100")
@@ -36,6 +38,7 @@ function menuRelatorios() {
         return
     }
     $(".containers").hide();
+    $("#mobileMenu").hide();
     $("#container-relatorios").show();
     $("a, .bg-gray-100").removeClass("bg-gray-100")
     $("#btnMenuRelatorios").addClass("bg-gray-100")

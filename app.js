@@ -17,6 +17,7 @@ const usingAPI = config.app.using_api;
 const mode = config.app.mode;
 const pathToKey = config.app.pathToKey;
 const pathToCert = config.app.pathToCert;
+const host = config.app.host;
 var admin_credential = config.app.admin_credential;
 var apiToken;
 
