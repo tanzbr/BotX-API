@@ -4,7 +4,15 @@ const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 var qrcodeWpp = null;
 var ready = false;
 var numberConnected = null;
-var statusLogs = ["Iniciando..."];
+var statusLogs = [`Iniciando... [normal] (${getTime()})`];
+
+function getTime() {
+    var today = new Date();
+    var date = today.getDate()+'/'+(today.getMonth()+1)+"/"+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    return dateTime
+}
 
 const client = new Client({
     restartOnAuthFail: true,
@@ -26,8 +34,8 @@ const client = new Client({
 
 client.on('qr', async qr => {
     console.log("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")
-    if (!(statusLogs[statusLogs.length - 1] == "Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")) {
-        statusLogs.push("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.");
+    if (!(statusLogs[statusLogs.length - 1].startsWith("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização."))) {
+        statusLogs.push(`Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização. [normal] (${getTime()})`);
     }
     qrcodeTerminal.generate(qr, {small: true})
 
@@ -36,7 +44,7 @@ client.on('qr', async qr => {
  
 client.on('authenticated', () => {
     console.log('Autenticado!');
-    statusLogs.push("Autenticado");
+    statusLogs.push(`Autenticado [ok] (${getTime()})`);
     
     //sendMsg(data)
 });
@@ -46,18 +54,19 @@ client.on('ready', () => {
     ready = true;
     qrcodeWpp = null;
     numberConnected = client.info.wid.user
-    statusLogs.push("Bot iniciado e online!")
+    statusLogs.push(`Bot iniciado e online! [sucesso] (${getTime()})`)
     //sendMsg(data)
 });
 
 client.on('auth_failure', () => {
     ready = false;
-    statusLogs.push("Falha na autenticação, tentando novamente...")
+    statusLogs.push(`Falha na autenticação, tentando novamente... [erro] (${getTime()})`)
 });
 
 client.on('disconnected', (reason) => {
     ready = false;
-    statusLogs.push("O BOT foi desconectado (Motivo: " +reason+ "). Reiniciando...")
+    statusLogs.push(`O BOT foi desconectado {Motivo: ` +reason+ `}. Reiniciando... [erro] (${getTime()})`)
+    numberConnected = null;
     client.destroy();
     client.initialize();
 });
