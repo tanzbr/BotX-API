@@ -33,6 +33,17 @@ function menuInicio() {
     $("#btnMenuInicio").addClass("bg-gray-100")
 }
 
+function menuCustomizacao() {
+    if (token == null) {
+        return
+    }
+    $(".containers").hide();
+    $("#mobileMenu").hide();
+    $("#container-customizacao").show();
+    $("a, .bg-gray-100").removeClass("bg-gray-100")
+    $("#btnMenuCustomizacao").addClass("bg-gray-100")
+}
+
 function menuRelatorios() {
     if (token == null) {
         return
@@ -42,10 +53,6 @@ function menuRelatorios() {
     $("#container-relatorios").show();
     $("a, .bg-gray-100").removeClass("bg-gray-100")
     $("#btnMenuRelatorios").addClass("bg-gray-100")
-}
-
-function fecharPopQr() {
-
 }
 
 function mostrarLogs() {
