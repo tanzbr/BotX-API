@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
+$primary-color: #0140EA;
+
 * {
   box-sizing: border-box;
 }
@@ -108,7 +110,7 @@ body {
   
   button {
     border: none;
-    background: #0140EA; //linear-gradient(45deg, #131086, #b621f3);
+    background: $primary-color; //linear-gradient(45deg, #131086, #b621f3);
     color: white;
     padding: 1rem;
     border-radius: 100px;
@@ -204,6 +206,23 @@ body {
 .detalhes {
   background-color: white;
   display: none;
+
+  .detalhes-header {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: $primary-color;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    h2 {
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      color: white;
+      padding: 0;
+      margin: 0;
+    }
+  }
 
   .btn {
     display: flex;
@@ -366,7 +385,7 @@ body {
     margin-bottom: 10px;
   }
   .responsive-table .table-header {
-    background-color: #0140EA;
+    background-color: $primary-color;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.03em;

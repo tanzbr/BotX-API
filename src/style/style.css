@@ -211,6 +211,22 @@ body {
       }*/
 
 }
+.detalhes .detalhes-header {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #0140EA;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.detalhes .detalhes-header h2 {
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+.detalhes .detalhes-header p {
+  color: white;
+  padding: 0;
+  margin: 0;
+}
 .detalhes .btn {
   display: flex;
   align-items: center;
