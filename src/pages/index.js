@@ -18,6 +18,8 @@ $("#telefone").inputmask({
     greedy: false
 });
 
+
+
 function btnSubmit() {
     var id = inputId.value
     id = id.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
