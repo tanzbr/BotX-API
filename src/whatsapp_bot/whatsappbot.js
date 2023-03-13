@@ -1,6 +1,7 @@
-const qrcodeTerminal = require('qrcode-terminal');
-const qrcode = require('qrcode');
-const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+import qrcodeTerminal from 'qrcode-terminal';
+import { toDataURL } from 'qrcode';
+import pkg from 'whatsapp-web.js';
+const { Client, LocalAuth, MessageMedia } = pkg;
 var qrcodeWpp = null;
 var ready = false;
 var numberConnected = null;
@@ -39,7 +40,7 @@ client.on('qr', async qr => {
     }
     qrcodeTerminal.generate(qr, {small: true})
 
-    qrcodeWpp = await qrcode.toDataURL(qr)
+    qrcodeWpp = await toDataURL(qr)
 });
  
 client.on('authenticated', () => {
@@ -73,7 +74,7 @@ client.on('disconnected', (reason) => {
 
 client.initialize();
 
-const sendMsg = async function(data) {
+export async function sendMsg(data) {
 
     if (!ready) {
         console.log("Uma requisição foi feita mas o BOT de WhatsApp ainda não foi iniciado e/ou vinculado.")
@@ -100,7 +101,7 @@ const sendMsg = async function(data) {
     console.log(boletos)
     
     for (var i = 0; i < boletos.length; i++) {
-        const media = await MessageMedia.fromUrl(boletos[i].pdf, options = {unsafeMime:true});
+        const media = await MessageMedia.fromUrl(boletos[i].pdf, {unsafeMime:true});
         media.mimetype = "application/pdf"
         media.filename = "Boleto de "+nome+" ("+boletos[i].vencimento+")"
         client.sendMessage(id, media)
@@ -116,7 +117,7 @@ const sendMsg = async function(data) {
    
 }
 
-var status = function() {
+export function status() {
     return JSON.parse(`{
         "ready": "${ready}",
         "qrcode": "${qrcodeWpp}",
@@ -125,7 +126,7 @@ var status = function() {
     }`)
 }
 
-var desconectar = function() {
+export function desconectar() {
     if (ready) {
         try {
             client.logout()
@@ -134,11 +135,5 @@ var desconectar = function() {
         }
         client.initialize()
     }
-}
-
-module.exports = { 
-    sendMsg,
-    status,
-    desconectar
 }
 

@@ -1,4 +1,4 @@
-const config = {
+export const config = {
   app: {
     port: 3000,
     // URL EM QUE AS REQUISIÇÕES SERÃO FEITAS (IP/DOMINIO DA MAQUINA DO SERVIDOR)
@@ -9,7 +9,7 @@ const config = {
     pathToKey: "/usr/ssl/cert.key",
     // CAMINHO PARA O SSL .CRT
     pathToCert: "/usr/ssl/cert.crt",
-    // API SENDO USADA ATUALMENTE (DISPONIVEIS: asaas)
+    // API SENDO USADA ATUALMENTE (DISPONIVEIS: asaas, bb)
     using_api: "asaas",
     admin_credential: "12345"
   },
@@ -17,5 +17,3 @@ const config = {
     token: "***REMOVED***",
   },
 };
-
-module.exports = config;

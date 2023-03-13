@@ -1,15 +1,16 @@
 // IMPORTS
-var express = require("express");
-var path = require("path");
-var cors = require("cors");
-var XMLHttpRequest = require("xhr2");
-var bot = require("./src/whatsapp_bot/whatsappbot.js");
+import express, { json, urlencoded } from "express";
+import { join } from "path";
+import cors from "cors";
+import XMLHttpRequest from "xhr2";
+import { desconectar, status, sendMsg } from "./src/whatsapp_bot/whatsappbot.js";
 var app = express();
-const config = require("./config");
-const parser = require("./src/utils/parser.js")
-const fs = require("fs");
-
-const https = require("https");
+import { config } from "./config.js";
+import { parseAsaasClient, parseAsaasTransactions } from "./src/utils/parser.js";
+import { readFileSync } from "fs";
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+import { createServer } from "https";
 
 // CONFIG FILE
 const HTTP_PORT = config.app.port;
@@ -25,16 +26,16 @@ if (usingAPI == "asaas") {
     apiToken = config.api_asaas.token;
 }
 
-app.use(express.json()); // for parsing application/json
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(json()); // for parsing application/json
+app.use(urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
 if (mode == "http") {
     app.listen(HTTP_PORT, () => {console.log("Servidor rodando na porta: " + HTTP_PORT)})
 } else {
-https.createServer({
-    key: fs.readFileSync(pathToKey),
-    cert: fs.readFileSync(pathToCert),
+    createServer({
+    key: readFileSync(pathToKey),
+    cert: readFileSync(pathToCert),
   },
   app)
   .listen(HTTP_PORT, ()=>{
@@ -49,54 +50,54 @@ app.listen(HTTP_PORT, () => {
 });*/
 
 app.get("", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/pages/index.html"));
+    res.sendFile(join(__dirname, "/src/pages/index.html"));
 });
 
 app.get("/admin", function (req, res) {
-    res.sendFile(path.join(__dirname, '/src/pages/admin.html'))
+    res.sendFile(join(__dirname, '/src/pages/admin.html'))
 });
 
 app.get("/index/style.css", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/style/style.css"));
+    res.sendFile(join(__dirname, "/src/style/style.css"));
 });
 app.get("/admin/admin.css", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/style/adminTail.css"));
+    res.sendFile(join(__dirname, "/src/style/adminTail.css"));
 });
 
 app.get("/RecoletaAlt-SemiBold.ttf", function (req, res) {
     res.sendFile(
-        path.join(__dirname, "/resources/font/RecoletaAlt-SemiBold.ttf")
+        join(__dirname, "/resources/font/RecoletaAlt-SemiBold.ttf")
     );
 });
 
 app.get("/logo.svg", function (req, res) {
-    res.sendFile(path.join(__dirname, "/resources/img/logo.svg"));
+    res.sendFile(join(__dirname, "/resources/img/logo.svg"));
 });
 
 app.get("/logobotx.jpg", function (req, res) {
-    res.sendFile(path.join(__dirname, "/resources/img/logobotx.jpg"));
+    res.sendFile(join(__dirname, "/resources/img/logobotx.jpg"));
 });
 
 app.get("/image.svg", function (req, res) {
-    res.sendFile(path.join(__dirname, "/resources/img/image.svg"));
+    res.sendFile(join(__dirname, "/resources/img/image.svg"));
 });
 
 app.get("/jquery.mask.js", function (req, res) {
     res.sendFile(
-        path.join(__dirname, "/node_modules/jquery-mask-plugin/src/jquery.mask.js")
+        join(__dirname, "/node_modules/jquery-mask-plugin/src/jquery.mask.js")
     );
 });
 
 app.get("/index/index.js", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/pages/index.js"));
+    res.sendFile(join(__dirname, "/src/pages/index.js"));
 });
 app.get("/admin/admin.js", function (req, res) {
-    res.sendFile(path.join(__dirname, "/src/pages/admin.js"));
+    res.sendFile(join(__dirname, "/src/pages/admin.js"));
 });
 
 app.get("/api/statusWpp", function (req, res) {
     if (req.headers.access_token == admin_credential) {
-        res.json(bot.status())
+        res.json(status())
     } else {
         res.status(401).json({
             message:"Consulta não autorizada."
@@ -121,7 +122,7 @@ app.get("/api/validar", function (req, res) {
 app.post("/api/disconnectWpp", async function (req, res) {
 
     if (req.headers.access_token == admin_credential) {
-        bot.desconectar();
+        desconectar();
         res.json({
             message:"ok"
         })
@@ -136,56 +137,38 @@ app.post("/api/disconnectWpp", async function (req, res) {
 
 app.post("/api/sendWpp", async function (req, res) {
     console.log(req.body);
-    var status = await bot.sendMsg(req.body);
+    var status = await sendMsg(req.body);
     res.json({
         message: status,
     });
 });
 
-/*
-app.get("/api/cliente/:id", (req, res, next) => {
-    var id = req.params.id;
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function logger() {
-        if (this.readyState === 4 && this.status === 200) {
-            res.json(this.responseText);
-        }
-    };
-    xhttp.open(
-        "GET",
-        `https://www.asaas.com/api/v3/customers?cpfCnpj=${id}`,
-        true
-    );
-    xhttp.setRequestHeader("access-token", apiToken);
-    xhttp.send();
-}); */
-
-app.get("/api/transacoes/:id", async (req, res, next) => {
+app.get("/api/asaas/transacoes/:id", async (req, res, next) => {
 
     // API ASAAS
     if (usingAPI == "asaas") {
         const xhttp2 = new XMLHttpRequest();
         var id = req.params.id;
-        var idCliente;
+        var nomeCliente;
 
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function logger() {
             if (this.readyState === 4 && this.status === 200) {
-                if (parser.parseAsaasClient(this.responseText) == null) {
+                if (parseAsaasClient(this.responseText) == null) {
                     res.json({
                         message: "error",
                         info: "User not found.",
                     });
                     return;
                 }
-                var dataClient = parser.parseAsaasClient(this.responseText);
-                idCliente = dataClient.idCliente;
-                nomeCliente = dataClient.nomeCliente;
+                var idCliente = JSON.parse(this.responseText).data[0].id;
+                var dataClient = parseAsaasClient(this.responseText);
 
                 xhttp2.onreadystatechange = function logger() {
                     if (this.readyState === 4 && this.status === 200) {
-
-                        var parsed = parser.parseAsaasTransactions(this.responseText)
+                        
+                        console.log(this.responseText)
+                        var parsed = parseAsaasTransactions(this.responseText, dataClient)
                         if (parsed == null) {
                             res.json({
                                 message: "error",
@@ -219,9 +202,26 @@ app.get("/api/transacoes/:id", async (req, res, next) => {
         );
         xhttp.setRequestHeader("access-token", apiToken);
         xhttp.send();
+    } else {
+        res.json({
+            message: "error",
+            info: "A API em uso não é a Asaas..",
+        });
     }
 
-    // SOON: OTHERS API
+});
+
+app.get("/api/bb/transacoes/:id", async (req, res, next) => {
+
+    // API BB
+    if (!usingAPI != "bb") {
+        res.json({
+            message: "error",
+            info: "A API em uso não é a Asaas..",
+        });
+        return;
+    }
+    
 });
 
 

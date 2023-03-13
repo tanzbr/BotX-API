@@ -7,6 +7,7 @@ var listaTransacoes;
 var httpUrl = "http://10.20.20.70:3000/"
 var cliente;
 var number;
+var usingAPI = "asaas"
 
 $("#cpfcnpj").inputmask({
     mask: ['999.999.999-99', '99.999.999/9999-99'],
@@ -83,7 +84,7 @@ function carregarLista(id) {
         }
     };
 
-    xhttp.open("get", httpUrl + "api/transacoes/" + id, false);
+    xhttp.open("get", httpUrl + "api/"+usingAPI+"/transacoes/" + id, false);
     xhttp.send();
 
 }

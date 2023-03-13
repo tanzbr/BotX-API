@@ -1,5 +1,7 @@
+
+
 // API ASAAS
-const parseAsaasClient = function (data) {
+export function parseAsaasClient(data) {
     var dados = JSON.parse(data);
 
     if (dados.data[0] == null) {
@@ -10,8 +12,9 @@ const parseAsaasClient = function (data) {
         "nomeCliente": dados.data[0].name
     }
 }
-const parseAsaasTransactions = function (data) {
+export function parseAsaasTransactions(data, dataClient) {
     var dados = JSON.parse(data).data;
+    var nomeCliente = dataClient.nomeCliente;
 
     if (dados[0] == null) {
         return null;
@@ -82,10 +85,4 @@ function formatDate(date) {
     }
     vencimento = vencimento.substring(0, vencimento.length - 1);
     return vencimento;
-}
-
-// EXPORT FUNCTIONS
-module.exports = {
-    parseAsaasClient,
-    parseAsaasTransactions
 }

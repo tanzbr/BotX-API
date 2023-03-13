@@ -1,7 +1,8 @@
 const inputToken = document.getElementById('token')
 var token;
 var qr;
-var url = "http://10.20.20.70:3000/api/";
+var url = "http://10.20.20.70:3000/";
+var usingAPI = "asaas"
 
 function fecharMenu() {
     $("#mobileMenu").hide();
@@ -78,7 +79,7 @@ async function btnSubmit() {
         alert("Por favor, digite um token de acesso.")
         return
     }
-    await fetch(url + "validar", {
+    await fetch(url + "api/validar", {
         headers: {
             'access_token': inputToken.value
         },
@@ -109,7 +110,7 @@ async function carregarWhatsApp() {
 
     if (token == null) { return }
 
-    var dados = await fetch(url + "statusWpp", {
+    var dados = await fetch(url + "api/statusWpp", {
         headers: {
             'access_token': token
         },
@@ -156,7 +157,7 @@ async function carregarWhatsApp() {
 
 function desconectarWpp() {
     console.log("Desconectando...")
-    fetch(url+"disconnectWpp",
+    fetch(url+"api/disconnectWpp",
     {
         method: "POST",
         headers: {
