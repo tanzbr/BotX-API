@@ -149,7 +149,6 @@ app.get("/api/asaas/transacoes/:id", async (req, res, next) => {
     if (usingAPI == "asaas") {
         const xhttp2 = new XMLHttpRequest();
         var id = req.params.id;
-        var nomeCliente;
 
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function logger() {
@@ -222,7 +221,7 @@ app.get("/api/bb/transacoes/:id", async (req, res, next) => {
         return;
     }
 
-    
+
     
 });
 
