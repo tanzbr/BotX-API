@@ -5,6 +5,7 @@ const { Client, LocalAuth, MessageMedia } = pkg;
 var qrcodeWpp = null;
 var ready = false;
 var numberConnected = null;
+var logout = false;
 var statusLogs = [`Iniciando... [normal] (${getTime()})`];
 
 function getTime() {
@@ -56,6 +57,7 @@ client.on('ready', () => {
     qrcodeWpp = null;
     numberConnected = client.info.wid.user
     statusLogs.push(`Bot iniciado e online! [sucesso] (${getTime()})`)
+    logout = false;
     //sendMsg(data)
 });
 
@@ -68,8 +70,10 @@ client.on('disconnected', (reason) => {
     ready = false;
     statusLogs.push(`O BOT foi desconectado {Motivo: ` +reason+ `}. Reiniciando... [erro] (${getTime()})`)
     numberConnected = null;
-    client.destroy();
-    client.initialize();
+    if (!logout) {
+        client.destroy();
+        client.initialize();
+    }
 });
 
 client.initialize();
@@ -128,6 +132,7 @@ export function status() {
 
 export function desconectar() {
     if (ready) {
+        logout = true;
         try {
             client.logout()
         } catch(e) {
