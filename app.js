@@ -205,7 +205,7 @@ app.get("/api/asaas/transacoes/:id", async (req, res, next) => {
     } else {
         res.json({
             message: "error",
-            info: "A API em uso não é a Asaas..",
+            info: "A API em uso não é a Asaas.",
         });
     }
 
@@ -217,10 +217,12 @@ app.get("/api/bb/transacoes/:id", async (req, res, next) => {
     if (!usingAPI != "bb") {
         res.json({
             message: "error",
-            info: "A API em uso não é a Asaas..",
+            info: "A API em uso não é o Banco do Brasil.",
         });
         return;
     }
+
+    
     
 });
 
