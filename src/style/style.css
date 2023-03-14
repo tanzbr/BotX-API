@@ -15,6 +15,61 @@ body {
   padding: 0px;
 }
 
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@keyframes ldio-wmzwbxp14mp {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.ldio-wmzwbxp14mp div {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 8px solid #191d3a;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+.ldio-wmzwbxp14mp div {
+  animation: ldio-wmzwbxp14mp 1s linear infinite;
+  top: 100px;
+  left: 100px
+}
+.loadingio-spinner-rolling-wo2kvdesi3i {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: #fff;
+}
+.ldio-wmzwbxp14mp {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-wmzwbxp14mp div { box-sizing: content-box; }
+
+.wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  background-color: #fff;
+  display: grid;
+  place-items: center;
+  transition: opacity .25s, visibility 1s;
+}
+.fade {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .container-login {
   min-height: 100vh;
   display: grid;
