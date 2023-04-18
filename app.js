@@ -12,13 +12,12 @@ import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 import { createServer } from "https";
 
-// CONFIG FILE
+// GET VARIABLES FROM CONFIG FILE
 const HTTP_PORT = config.app.port;
 const usingAPI = config.app.using_api;
 const mode = config.app.mode;
 const pathToKey = config.app.pathToKey;
 const pathToCert = config.app.pathToCert;
-const host = config.app.host;
 var admin_credential = config.app.admin_credential;
 var apiToken;
 
@@ -30,6 +29,7 @@ app.use(json()); // for parsing application/json
 app.use(urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
+// START SERVER
 if (mode == "http") {
     app.listen(HTTP_PORT, () => {console.log("Servidor rodando na porta: " + HTTP_PORT)})
 } else {
@@ -43,12 +43,7 @@ if (mode == "http") {
   });
 }
 
-
-/*
-app.listen(HTTP_PORT, () => {
-    console.log("Servidor rodando na porta: " + HTTP_PORT);
-});*/
-
+// ROTAS
 app.get("", function (req, res) {
     res.sendFile(join(__dirname, "/src/pages/index.html"));
 });
@@ -95,6 +90,7 @@ app.get("/admin/admin.js", function (req, res) {
     res.sendFile(join(__dirname, "/src/pages/admin.js"));
 });
 
+// API PARA O PAINEL /ADMIN CONSULTAR O STATUS DO BOT
 app.get("/api/statusWpp", function (req, res) {
     if (req.headers.access_token == admin_credential) {
         res.json(status())
@@ -106,6 +102,7 @@ app.get("/api/statusWpp", function (req, res) {
     
 });
 
+// API PARA VERIFICAR SE A CREDENCIAL DE LOGIN DO /ADMIN É VÁLIDA
 app.get("/api/validar", function (req, res) {
     if (req.headers.access_token == admin_credential) {
         res.status(200).json({
@@ -116,9 +113,10 @@ app.get("/api/validar", function (req, res) {
             message:"Consulta não autorizada."
         })
     }
-    
+
 });
 
+// DESCONECTAR NUMERO CONECTADO DO WHATSAPP (NÃO ESTÁ FUNCIONANDO 100%)
 app.post("/api/disconnectWpp", async function (req, res) {
 
     if (req.headers.access_token == admin_credential) {
@@ -135,14 +133,17 @@ app.post("/api/disconnectWpp", async function (req, res) {
     
 });
 
+// ENVIAR BOLETOS PARA O NUMERO DO WHATSAPP
 app.post("/api/sendWpp", async function (req, res) {
     console.log(req.body);
     var status = await sendMsg(req.body);
     res.json({
         message: status,
     });
+    
 });
 
+// CONSULTAR BOLETOS DO CPF
 app.get("/api/asaas/transacoes/:id", async (req, res, next) => {
 
     // API ASAAS
@@ -209,20 +210,3 @@ app.get("/api/asaas/transacoes/:id", async (req, res, next) => {
     }
 
 });
-
-app.get("/api/bb/transacoes/:id", async (req, res, next) => {
-
-    // API BB
-    if (!usingAPI != "bb") {
-        res.json({
-            message: "error",
-            info: "A API em uso não é o Banco do Brasil.",
-        });
-        return;
-    }
-
-
-    
-});
-
-

@@ -1,6 +1,7 @@
 
 
 // API ASAAS
+// FORMATA OS DADOS DA CONSULTA DE CLIENTE DOS ASAAS, RETORNANDO SOMENTE AS INFORMAÇÕES NECESSARIAS
 export function parseAsaasClient(data) {
     var dados = JSON.parse(data);
 
@@ -12,6 +13,7 @@ export function parseAsaasClient(data) {
         "nomeCliente": dados.data[0].name
     }
 }
+//FORMATA OS DADOS DOS BOLETOS PUXADOS DIRETAMENTE DO ASAAS, RETORNANDO SOMENTE AS INFORMAÇÕES NECESSÁRIAS
 export function parseAsaasTransactions(data, dataClient) {
     var dados = JSON.parse(data).data;
     var nomeCliente = dataClient.nomeCliente;
@@ -76,6 +78,8 @@ export function parseAsaasTransactions(data, dataClient) {
 }
 
 // UTILS
+
+// FORMATAR DATA
 function formatDate(date) {
     var arrayData = date.split("-");
     arrayData.reverse();

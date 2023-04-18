@@ -8,6 +8,7 @@ var numberConnected = null;
 var logout = false;
 var statusLogs = [`Iniciando... [normal] (${getTime()})`];
 
+// GERAR STRING COM A DATA E HORA ATUAL
 function getTime() {
     var today = new Date();
     var date = today.getDate()+'/'+(today.getMonth()+1)+"/"+today.getFullYear();
@@ -16,6 +17,7 @@ function getTime() {
     return dateTime
 }
 
+// INICIAR CLIENT DO BOT
 const client = new Client({
     restartOnAuthFail: true,
     puppeteer: {
@@ -34,6 +36,7 @@ const client = new Client({
     authStrategy: new LocalAuth()
   });
 
+// AÇÃO AO GERAR O QRCODE
 client.on('qr', async qr => {
     console.log("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização.")
     if (!(statusLogs[statusLogs.length - 1].startsWith("Escaneie o QR CODE com o aplicativo do WhatsApp para realizar a sincronização."))) {
@@ -44,6 +47,7 @@ client.on('qr', async qr => {
     qrcodeWpp = await toDataURL(qr)
 });
  
+// AÇÃO AO AUTENTICAR O BOT
 client.on('authenticated', () => {
     console.log('Autenticado!');
     statusLogs.push(`Autenticado [ok] (${getTime()})`);
@@ -51,6 +55,7 @@ client.on('authenticated', () => {
     //sendMsg(data)
 });
 
+// AÇÃO AO BOT ESTAR READY
 client.on('ready', () => {
     console.log('Bot pronto!');
     ready = true;
@@ -61,11 +66,13 @@ client.on('ready', () => {
     //sendMsg(data)
 });
 
+// AÇÃO EM FALHA DE AUTENTICAÇÃO
 client.on('auth_failure', () => {
     ready = false;
     statusLogs.push(`Falha na autenticação, tentando novamente... [erro] (${getTime()})`)
 });
 
+// AÇÃO AO DESCONECTAR O BOT
 client.on('disconnected', (reason) => {
     ready = false;
     statusLogs.push(`O BOT foi desconectado {Motivo: ` +reason+ `}. Reiniciando... [erro] (${getTime()})`)
@@ -76,8 +83,10 @@ client.on('disconnected', (reason) => {
     }
 });
 
+// INICIAR CLIENT
 client.initialize();
 
+// ENVIAR BOLETOS PARA O NUMERO DE WHATSAPP
 export async function sendMsg(data) {
 
     if (!ready) {
@@ -121,6 +130,7 @@ export async function sendMsg(data) {
    
 }
 
+// RETORNAR STATUS DO BOT
 export function status() {
     return JSON.parse(`{
         "ready": "${ready}",
@@ -130,6 +140,7 @@ export function status() {
     }`)
 }
 
+// DESCONECTAR O NUMERO CONECTADO (NÃO FUNCIONANDO 100%)
 export function desconectar() {
     if (ready) {
         logout = true;

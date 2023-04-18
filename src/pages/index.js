@@ -9,6 +9,7 @@ var cliente;
 var number;
 var usingAPI = "asaas"
 
+// MASCARAS PARA OS INPUTS
 $("#cpfcnpj").inputmask({
     mask: ['999.999.999-99', '99.999.999/9999-99'],
     keepStatic: true
@@ -19,20 +20,21 @@ $("#telefone").inputmask({
     greedy: false
 });
 
-
+// ESCONDER ANIMAÇÃO DE LOAD AO CARREGAR A PAGINA
 const fadeout = () => {
     const loaderWrapper = document.querySelector('.wrapper');
     loaderWrapper.classList.add('fade');
 }
-
 window.addEventListener('load', fadeout);
 
+// AÇÃO DO BOTÃO CONSULTAR
 function btnSubmit() {
     var id = inputId.value
     id = id.replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
     var tel = inputTel.value
     tel = tel.replaceAll("(", "").replaceAll(")", "").replaceAll(" ", "").replaceAll("-", "").replaceAll("+", "")
 
+    // VALIDATIONS
     if (id == "") {
         alert("Por favor, digite seu CPF ou CNPJ.")
         return null;
@@ -54,13 +56,13 @@ function btnSubmit() {
         return null;
     }
     number = tel;
+    // CARREGAR BOLETOS
     carregarLista(id)
-    //window.location.replace(window.location.href.replaceAll("?", "")+"detalhes.html?id="+id+"&tel="+tel)
 }
 
 
 
-// detalhes
+// CONSULTAR E RENDERIZAR LISTA DE BOLETOS
 function carregarLista(id) {
     console.log("Carregando lista de transações...")
 
@@ -95,6 +97,7 @@ function carregarLista(id) {
 
 }
 
+// CRIA O ELEMENTO HTML PARA CADA CARD DE BOLETO, COM SEU RESPECTIVO ID DO BOLETO E INFORMAÇÕES
 function criarElemento(listaTransacoes, i) {
     var li = "";
     li += "<li class=\"table-row\" id=\"" + listaTransacoes[i].id + "\" onclick=\"\">";
@@ -134,15 +137,17 @@ function criarElemento(listaTransacoes, i) {
     return li
 }
 
-var selected = [];
 
+// BOTAO VOLTAR
 function voltar() {
     $(".detalhes").css("display", "none")
     $(".container-login").css("display", "grid")
     $('.responsive-table .table-row').remove()
     selected = []
 }
-
+// PARA CONTROLE DOS BOLETOS SELECIONADOS PARA SEREM ENVIADOS
+var selected = [];
+// ADICIONAR OU REMOVER DA VARIAVEL selected AO CLICAR NO BOLETO
 function select(data) {
     if (!selected.includes(data)) {
         selected.push(data)
@@ -154,6 +159,7 @@ function select(data) {
     console.log(selected)
 }
 
+// ENVIAR REQUISIÇÃO AO SERVIDOR PARA ENVIAR OS BOLETOS
 function sendWpp() {
 
     $('input').each(function () {
