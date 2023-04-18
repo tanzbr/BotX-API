@@ -65,14 +65,17 @@ function mostrarLogs() {
     $(".div-logs").show();
 }
 
+// PUXAR INFORMACOES DO BOT
 window.onload = () => {
     carregarWhatsApp()
 }
 
+// RECARREGAR CONSTANTEMENTE AS INFORMACOES DO BOT
 window.setInterval(function () {
     carregarWhatsApp();
 }, 3000);
 
+// ACÃO DO BOTAO DE LOGAR
 async function btnSubmit() {
     var valid;
     if (inputToken.value == "") {
@@ -105,7 +108,7 @@ async function btnSubmit() {
     carregarWhatsApp();
 }
 
-
+// PUXAR E EXIBIR INFORMAÇÕES DO BOT DO WHATSAPP
 async function carregarWhatsApp() {
 
     if (token == null) { return }
@@ -155,6 +158,7 @@ async function carregarWhatsApp() {
 
 }
 
+// DESCONECTAR NUMERO CONECTADO AO WHATSAPP (NÃO FUNCIONANDO PERFEITAMENTE)
 function desconectarWpp() {
     console.log("Desconectando...")
     fetch(url+"api/disconnectWpp",
@@ -166,6 +170,7 @@ function desconectarWpp() {
     })
 }
 
+// ABRIR POPUP COM O QRCODE PARA ESCANEAR
 function conectarWpp() {
     if (qr) {
         $("#popQrcode").show();
@@ -174,11 +179,11 @@ function conectarWpp() {
         return;
     }
 }
-
 function fecharPopQr() {
     $("#popQrcode").hide();
 }
 
+// CRIAR ELEMENTO PARA A LISTA DE LOGS
 function criarLog(msg) {
 
     var tipo = msg.match(/ *\[[^\]]*]/).pop().replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
