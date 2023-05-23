@@ -9,7 +9,9 @@ O projeto utiliza a biblioteca whatsapp-web.js para rodar uma instância do What
 
 
 ## Demo 🇺🇸  / Demonstração 🇧🇷
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qd0TMCRAPD8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+https://github.com/tanzbr/BotX-API/assets/86328823/f83cc1e1-5f21-47a8-ab82-3037554cf0b9
+
 
 ## Admin Page 🇺🇸  / Página de Administração 🇧🇷
  🇺🇸  The project has a simple admin page to manage the connected number of whatsapp and see the logs.
