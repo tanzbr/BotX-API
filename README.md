@@ -1,6 +1,6 @@
 
 # ✅ BotX API for the company TecnoPalmas 🇺🇸 
-This project runs a back-end and web page where the customer can enter their data and the system will make API requests to check their pending and overdue bills/invoices. In this way, the customer can select the invoices they want to receive and they will be sent to their WhatsApp number.
+This project runs a back-end and web page where the customer can enter their data and the system will make API requests to check their pending and overdue bills/invoices. In this way, the customer can select the invoices they want to receive and they will be sent to their WhatsApp number.<br>
 The project uses the whatsapp-web.js library to run a whatsapp web instance where a number can be connected via qr code to send bills/invoices. The QR Code can be scanned through the admin panel. All connected whatsapp sessions are saved, no need to scan again when restarting the system.
 
 # ✅ BotX API para a empresa TecnoPalmas 🇧🇷 
