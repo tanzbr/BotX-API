@@ -5,16 +5,16 @@ export const config = {
     port: 3000,
     // HTTPS OR HTTP
     mode: "http",
-    // CAMINHO PARA O SSL .KEY CASO USE HTTPS
+    // PATH TO SSL .KEY IF USE HTTPS
     pathToKey: "/usr/ssl/cert.key",
-    // CAMINHO PARA O SSL .CRT CASO USE HTTPS
+    // PATH TO SSL .CRT IF USE HTTPS
     pathToCert: "/usr/ssl/cert.crt",
-    // API SENDO USADA ATUALMENTE (DISPONIVEIS: asaas)
+    // USE API (AVAILABLE: asaas)
     using_api: "asaas",
-    // SENHA PARA O LOGIN DO PAINEL /ADMIN
+    // PASSWORD FOR ADMIN PAGE (<url>/admin)
     admin_credential: "12345"
   },
   api_asaas: {
-    token: "***REMOVED***",
+    token: "insert asaas token here for retrieve boletos",
   },
 };
