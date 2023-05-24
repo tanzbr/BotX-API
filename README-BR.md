@@ -16,7 +16,7 @@ https://github.com/tanzbr/BotX-API/assets/86328823/f83cc1e1-5f21-47a8-ab82-30375
 ## Página de Administração 
  O projeto possui uma página de administração simples para gerenciar o número de whatsapp conectado e ver os logs.
 
-**Login da Página de Admin **
+**Login da Página de Admin**
 ![Admin page login](https://i.imgur.com/W6h2DeI.png)
 **Página inicial**
 ![Admin Page dashboard](https://i.imgur.com/wVMkS2Z.png)
