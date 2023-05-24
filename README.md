@@ -19,7 +19,7 @@ The project has a simple admin page to manage the connected number of whatsapp a
 
 **Admin Page Login**
 ![Admin page login](https://i.imgur.com/W6h2DeI.png)
-**Dashboard*
+**Dashboard**
 ![Admin Page dashboard](https://i.imgur.com/wVMkS2Z.png)
 
 **Manage WhatsApp**
