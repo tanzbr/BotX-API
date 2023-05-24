@@ -11,7 +11,8 @@ The project uses the whatsapp-web.js library to run a whatsapp web instance wher
 
 ## Demo 
 
-https://github.com/tanzbr/BotX-API/assets/86328823/f83cc1e1-5f21-47a8-ab82-3037554cf0b9
+https://github.com/tanzbr/BotX-API/assets/86328823/96615035-03c7-47e4-b851-d655e6368f24
+
 
 
 ## Admin Page
