@@ -7,12 +7,12 @@
 Este projeto roda um back-end e uma página web, onde o cliente poderá inserir seus dados e o sistema irá realizar requisições a API para consultar seus boletos/faturas pendentes e vencidas, desta forma, o cliente pode selecionar as faturas que deseja receber e elas serão enviadas em seu número de WhatsApp.<br><br>
 O projeto utiliza a biblioteca whatsapp-web.js para rodar uma instância do WhatsApp web onde um número pode ser conectado através do QR code para enviar as contas/faturas. O QR Code pode ser escaneado através do painel de administração. Todas as sessões de WhatsApp conectadas são salvas, sem a necessidade de escanear novamente ao reiniciar o sistema.
 
-## Demonstração
+## 💡 Demonstração
 
 https://github.com/tanzbr/BotX-API/assets/86328823/96615035-03c7-47e4-b851-d655e6368f24
 
 
-## Página de Administração 
+## 💻 Página de Administração 
  O projeto possui uma página de administração simples para gerenciar o número de whatsapp conectado e ver os logs.
 
 **Login da Página de Admin**
