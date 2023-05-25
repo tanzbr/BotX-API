@@ -1,4 +1,3 @@
-# 🇺🇸 English Version
 🇧🇷 Para versão em português clique [aqui](https://github.com/tanzbr/BotX-API/blob/main/README-BR.md)
 
 ## 🛠️ Technologies and languages used
