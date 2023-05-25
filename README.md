@@ -1,21 +1,21 @@
 # 🇺🇸 English Version
 🇧🇷 Para versão em português clique [aqui](https://github.com/tanzbr/BotX-API/blob/main/README-BR.md)
 
-## Technologies and languages used
+## 🛠️ Technologies and languages used
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js/)
 
 
-# BotX API for the company TecnoPalmas 
+# ✅ BotX API for the company TecnoPalmas 
 This project runs a back-end and web page where the customer can enter their data and the system will make API requests to check their pending and overdue bills/invoices. In this way, the customer can select the invoices they want to receive and they will be sent to their WhatsApp number.<br><br>
 The project uses the whatsapp-web.js library to run a whatsapp web instance where a number can be connected via qr code to send bills/invoices. The QR Code can be scanned through the admin panel. All connected whatsapp sessions are saved, no need to scan again when restarting the system.
 
-## Demo 
+## 💡 Demo 
 
 https://github.com/tanzbr/BotX-API/assets/86328823/96615035-03c7-47e4-b851-d655e6368f24
 
 
 
-## Admin Page
+## 💻 Admin Page
 The project has a simple admin page to manage the connected number of whatsapp and see the logs.
 
 **Admin Page Login**
